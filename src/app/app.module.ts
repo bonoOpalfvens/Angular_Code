@@ -2,19 +2,21 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatToolbarModule, MatMenuModule, MatButtonModule, MatIconModule, MatTooltipModule, MatInputModule, MatFormFieldModule, MatAutocompleteModule, MatCardModule, MatListModule } from '@angular/material';
+import { MatToolbarModule, MatMenuModule, MatButtonModule, MatIconModule, MatTooltipModule, MatInputModule, MatFormFieldModule, MatAutocompleteModule, MatCardModule, MatListModule, MatGridListModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 
 // Custom Components
 import { AppComponent } from './app.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { BoardExplorerComponent } from './board-explorer/board-explorer.component';
+import { PostExplorerComponent } from './post-explorer/post-explorer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuBarComponent,
-    BoardExplorerComponent
+    BoardExplorerComponent,
+    PostExplorerComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,7 @@ import { BoardExplorerComponent } from './board-explorer/board-explorer.componen
     MatAutocompleteModule,
     MatCardModule,
     MatListModule,
+    MatGridListModule,
 
     ReactiveFormsModule
   ],

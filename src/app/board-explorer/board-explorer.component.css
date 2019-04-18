@@ -9,7 +9,9 @@ div[layout="row"] {
   white-space: nowrap;
   margin: 10px;
   scrollbar-width: thin;
-  scrollbar-color: #3f51b5 #ececec;
+  scrollbar-color: #3f51b5 #ffffff;
+  box-shadow: 1px 0px 1px 0px rgb(231, 231, 231);
+  border-radius: 5px;
 }
 div::-webkit-scrollbar {
     width: 12px;
@@ -34,7 +36,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 .languageAvatar {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png');
   background-size: cover;
 }
 
