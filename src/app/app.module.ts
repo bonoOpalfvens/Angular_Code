@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { BoardExplorerComponent } from './board-explorer/board-explorer.component';
 import { PostExplorerComponent } from './post-explorer/post-explorer.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { PostExplorerComponent } from './post-explorer/post-explorer.component';
     MatListModule,
     MatGridListModule,
 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

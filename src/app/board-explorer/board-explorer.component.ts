@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Board } from '../board.model';
+import { CodeDataService } from '../code-data.service';
 
 @Component({
   selector: 'app-board-explorer',
@@ -6,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board-explorer.component.css']
 })
 export class BoardExplorerComponent implements OnInit {
-
-  constructor() { }
+  private _fetchBoards$: Observable<Board[]> = this._codeDataService.boards$;
+  constructor(private _codeDataService: CodeDataService) { }
 
   ngOnInit() {
   }
 
+  get boards() {
+    return this._fetchBoards$;
+  }
 }
