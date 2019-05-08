@@ -15,8 +15,8 @@ export class Board {
     get name(): string{
         return this._name;
     }
-    get icon(): string{
-        return this._icon;
+    get icon() {
+        return {'background-image': `url(${this._icon})`};
     }
     get posts(): Array<Post>{
         return this._posts;

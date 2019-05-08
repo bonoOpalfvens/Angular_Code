@@ -18,9 +18,9 @@ export class Post {
     get title(): string{
         return this._title;
     }
-    get board(): Board{
+    /*get board(): Board{
         return this._board;
-    }
+    }*/
     get user(): string{
         return this._user;
     }
