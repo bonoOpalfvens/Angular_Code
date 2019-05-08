@@ -2,8 +2,9 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatToolbarModule, MatMenuModule, MatButtonModule, MatIconModule, MatTooltipModule, MatInputModule, MatFormFieldModule, MatAutocompleteModule, MatCardModule, MatListModule, MatGridListModule } from '@angular/material';
+import { MatToolbarModule, MatMenuModule, MatButtonModule, MatIconModule, MatTooltipModule, MatInputModule, MatFormFieldModule, MatAutocompleteModule, MatCardModule, MatListModule, MatGridListModule, MatSidenavModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
 // Custom Components
 import { AppComponent } from './app.component';
@@ -12,6 +13,12 @@ import { BoardExplorerComponent } from './board-explorer/board-explorer.componen
 import { PostExplorerComponent } from './post-explorer/post-explorer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserModule } from './user/user.module';
+
+const appRoutes: Routes = [
+  { path: 'Boards', component: BoardExplorerComponent },
+  { path: 'Posts', component: PostExplorerComponent },
+  { path: '', redirectTo: 'post-explorer', pathMatch: 'full' }
+];
 
 @NgModule({
   declarations: [
@@ -22,6 +29,7 @@ import { UserModule } from './user/user.module';
   ],
   imports: [
     BrowserModule,
+    RouterModule.forRoot(appRoutes),
     // AngularMaterialAnimations
     BrowserAnimationsModule,
     // AngularMaterial
@@ -36,6 +44,7 @@ import { UserModule } from './user/user.module';
     MatCardModule,
     MatListModule,
     MatGridListModule,
+    MatSidenavModule,
 
     ReactiveFormsModule,
     HttpClientModule,

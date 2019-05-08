@@ -1,34 +1,61 @@
-<mat-toolbar color='primary'>
-  <span>FluxCode</span>
-  <span class='fill-central-space'></span>
-  <mat-menu #appMenu='matMenu'>
-    <ng-template matMenuContent let-name='name'>
-      <button mat-menu-item>Settings</button>
-      <button mat-menu-item>Boards</button>
-      <button mat-menu-item>Log off {{name}}</button>
-    </ng-template>
-  </mat-menu>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav color='primary' #sidenav class="sidenav" fixedInViewport="true" position="end"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['Home']">Home</a>
+      <a mat-list-item [routerLink]="['Boards']">Boards</a>
+      <a mat-list-item [routerLink]="['Posts']">Posts</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+      <mat-toolbar color='primary'>
+          <span>FluxCode</span>
+          <span class='fill-central-space'></span>
+          <mat-menu #appMenu='matMenu'>
+            <ng-template matMenuContent let-name='name'>
+              <button mat-menu-item>Settings</button>
+              <button mat-menu-item>Boards</button>
+              <button mat-menu-item>Log off {{name}}</button>
+            </ng-template>
+          </mat-menu>
+        
+          <mat-form-field class='searchBar'>
+            <input type='search' matInput [formControl]='searchString' [matAutocomplete]='auto'>
+            <mat-autocomplete #auto='matAutocomplete'>
+                <mat-option *ngFor='let option of filteredOptions | async' [value]='option'>
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+          </mat-form-field>
+          <button mat-icon-button>
+            <mat-icon>search</mat-icon>
+          </button>
+        
+          <span class='fill-central-space'></span>
+          <button mat-icon-button matTooltip='Create new post'>
+            <mat-icon>create</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip='Notifications'>
+            <mat-icon>notifications</mat-icon>
+          </button>
+          <button mat-icon-button [matMenuTriggerFor]='appMenu' [matMenuTriggerData]='{name: "Bob"}'>
+            <mat-icon>person</mat-icon>
+          </button>
+          <button
+              type="button"
+              aria-label="Toggle sidenav"
+              mat-icon-button
+              (click)="sidenav.toggle()"
+              *ngIf="(isHandset$ | async)"
+            >
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+          </button>
+        </mat-toolbar>
 
-  <mat-form-field class='searchBar'>
-    <input type='search' matInput [formControl]='searchString' [matAutocomplete]='auto'>
-    <mat-autocomplete #auto='matAutocomplete'>
-        <mat-option *ngFor='let option of filteredOptions | async' [value]='option'>
-          {{option}}
-        </mat-option>
-      </mat-autocomplete>
-  </mat-form-field>
-  <button mat-icon-button>
-    <mat-icon>search</mat-icon>
-  </button>
+        <ng-content></ng-content>
 
-  <span class='fill-central-space'></span>
-  <button mat-icon-button matTooltip='Create new post'>
-    <mat-icon>create</mat-icon>
-  </button>
-  <button mat-icon-button matTooltip='Notifications'>
-    <mat-icon>notifications</mat-icon>
-  </button>
-  <button mat-icon-button [matMenuTriggerFor]='appMenu' [matMenuTriggerData]='{name: "Bob"}'>
-    <mat-icon>person</mat-icon>
-  </button>
-</mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
