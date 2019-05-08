@@ -11,6 +11,7 @@ import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { BoardExplorerComponent } from './board-explorer/board-explorer.component';
 import { PostExplorerComponent } from './post-explorer/post-explorer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatGridListModule,
 
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
