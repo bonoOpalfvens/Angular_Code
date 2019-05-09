@@ -8,6 +8,7 @@ import { PostExplorerComponent } from './post-explorer/post-explorer.component';
   imports: [
     CommonModule,
     MaterialModule
-  ]
+  ],
+  exports: [PostExplorerComponent]
 })
 export class PostModule { }

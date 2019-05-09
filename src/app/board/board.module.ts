@@ -9,5 +9,6 @@ import { MaterialModule } from '../material.module';
     CommonModule,
     MaterialModule
   ],
+  exports: [BoardExplorerComponent]
 })
 export class BoardModule { }

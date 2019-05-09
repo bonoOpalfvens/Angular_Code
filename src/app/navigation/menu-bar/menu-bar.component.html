@@ -1,8 +1,7 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav color='primary' #sidenav class="sidenav" fixedInViewport="true" position="end"
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="!(isHandset$ | async)">
+      [mode]="(isHandset$ | async) ? 'over' : 'side'">
     <mat-nav-list>
       <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['Home']">Home</a>
       <a mat-list-item (click)="sidenav.toggle()" [routerLink]="['Boards']">Boards</a>
