@@ -1,9 +1,9 @@
-import { Board } from './board.model';
+import { Board } from '../board/board.model';
 
 export class Post {
     constructor(
         private _title: string,
-        private _board = new Array<Board>(),
+        private _board: Board,
         private _user: string,
         private _dateAdded = new Date(),
         private _comments = new Array<string>(),
@@ -11,16 +11,16 @@ export class Post {
     ){}
 
     static fromJSON(json: any): Post {
-        const obj = new Post(json.title, json.board, json.user, json.dateAdded, json.comments, json.likes);
+        const obj = new Post(json.title, Board.fromJSON(json.board), json.user, json.dateAdded, json.comments, json.likes);
         return obj;
     }
 
     get title(): string{
         return this._title;
     }
-    /*get board(): Board{
+    get board(): Board{
         return this._board;
-    }*/
+    }
     get user(): string{
         return this._user;
     }

@@ -1,4 +1,4 @@
-import { Post } from './post.module';
+import { Post } from '../post/post.model';
 
 export class Board {
     constructor(
