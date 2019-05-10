@@ -1,142 +1,15 @@
 <h1>Featured Posts</h1>
 <div class='postList'>
-  <div class='postListItem'>
+  <div *ngFor='let post of (posts | async)' class='postListItem'>
     <mat-card class='postCard'>
       <mat-card-header>
-        <div mat-card-avatar class='languageAvatar'></div>
-        <mat-card-title>Basic Webapplication</mat-card-title>
-        <mat-card-subtitle><b>JavaScript</b> || Posted by user/Bono on 18/04/2019 at 16:20pm</mat-card-subtitle>
-        <mat-card-subtitle><button mat-button><mat-icon>comment</mat-icon><span class='buttonSubText'>666 Comments</span></button><button mat-button color='primary'><mat-icon>thumb_up_alt</mat-icon><span class='buttonSubText'>You and 115 other people liked this!</span></button></mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
-  </div>
-  <div class='postListItem'>
-    <mat-card class='postCard'>
-      <mat-card-header>
-        <div mat-card-avatar class='languageAvatar'></div>
-        <mat-card-title>Native Windows Application</mat-card-title>
-        <mat-card-subtitle><b>C#</b> || Posted by user/Someotheruse on 18/04/2019 at 16:20pm</mat-card-subtitle>
-        <mat-card-subtitle><button mat-button><mat-icon>comment</mat-icon> 666 Comments</button><button mat-button><mat-icon>thumb_up_alt</mat-icon> Like</button></mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
-  </div>
-  <div class='postListItem'>
-    <mat-card class='postCard'>
-      <mat-card-header>
-        <div mat-card-avatar class='languageAvatar'></div>
-        <mat-card-title>API</mat-card-title>
-        <mat-card-subtitle><b>.NET</b> || Posted by user/Someotheruse on 18/04/2019 at 16:20pm</mat-card-subtitle>
-        <mat-card-subtitle><button mat-button><mat-icon>comment</mat-icon> 666 Comments</button><button mat-button><mat-icon>thumb_up_alt</mat-icon> Like</button></mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
-  </div>
-  <div class='postListItem'>
-    <mat-card class='postCard'>
-      <mat-card-header>
-        <div mat-card-avatar class='languageAvatar'></div>
-        <mat-card-title>Basic Website</mat-card-title>
-        <mat-card-subtitle><b>HTML - CSS</b> || Posted by user/Bono on 18/04/2019 at 16:20pm</mat-card-subtitle>
-        <mat-card-subtitle><button mat-button><mat-icon>comment</mat-icon> 666 Comments</button><button mat-button><mat-icon>thumb_up_alt</mat-icon> Like</button></mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
-  </div>
-  <div class='postListItem'>
-    <mat-card class='postCard'>
-      <mat-card-header>
-        <div mat-card-avatar class='languageAvatar'></div>
-        <mat-card-title>Basic Webapplication</mat-card-title>
-        <mat-card-subtitle><b>JavaScript</b> || Posted by user/Bono on 18/04/2019 at 16:20pm</mat-card-subtitle>
-        <mat-card-subtitle><button mat-button><mat-icon>comment</mat-icon><span class='buttonSubText'>666 Comments</span></button><button mat-button color='primary'><mat-icon>thumb_up_alt</mat-icon><span class='buttonSubText'>You and 115 other people liked this!</span></button></mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
-  </div>
-  <div class='postListItem'>
-    <mat-card class='postCard'>
-      <mat-card-header>
-        <div mat-card-avatar class='languageAvatar'></div>
-        <mat-card-title>Basic Webapplication</mat-card-title>
-        <mat-card-subtitle><b>JavaScript</b> || Posted by user/Bono on 18/04/2019 at 16:20pm</mat-card-subtitle>
-        <mat-card-subtitle><button mat-button><mat-icon>comment</mat-icon><span class='buttonSubText'>666 Comments</span></button><button mat-button color='primary'><mat-icon>thumb_up_alt</mat-icon><span class='buttonSubText'>You and 115 other people liked this!</span></button></mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
-  </div>
-  <div class='postListItem'>
-    <mat-card class='postCard'>
-      <mat-card-header>
-        <div mat-card-avatar class='languageAvatar'></div>
-        <mat-card-title>Basic Webapplication</mat-card-title>
-        <mat-card-subtitle><b>JavaScript</b> || Posted by user/Bono on 18/04/2019 at 16:20pm</mat-card-subtitle>
-        <mat-card-subtitle><button mat-button><mat-icon>comment</mat-icon><span class='buttonSubText'>666 Comments</span></button><button mat-button color='primary'><mat-icon>thumb_up_alt</mat-icon><span class='buttonSubText'>You and 115 other people liked this!</span></button></mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
-  </div>
-  <div class='postListItem'>
-    <mat-card class='postCard'>
-      <mat-card-header>
-        <div mat-card-avatar class='languageAvatar'></div>
-        <mat-card-title>Basic Webapplication</mat-card-title>
-        <mat-card-subtitle><b>JavaScript</b> || Posted by user/Bono on 18/04/2019 at 16:20pm</mat-card-subtitle>
-        <mat-card-subtitle><button mat-button><mat-icon>comment</mat-icon><span class='buttonSubText'>666 Comments</span></button><button mat-button color='primary'><mat-icon>thumb_up_alt</mat-icon><span class='buttonSubText'>You and 115 other people liked this!</span></button></mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
-  </div>
-  <div class='postListItem'>
-    <mat-card class='postCard'>
-      <mat-card-header>
-        <div mat-card-avatar class='languageAvatar'></div>
-        <mat-card-title>Basic Webapplication</mat-card-title>
-        <mat-card-subtitle><b>JavaScript</b> || Posted by user/Bono on 18/04/2019 at 16:20pm</mat-card-subtitle>
-        <mat-card-subtitle><button mat-button><mat-icon>comment</mat-icon><span class='buttonSubText'>666 Comments</span></button><button mat-button color='primary'><mat-icon>thumb_up_alt</mat-icon><span class='buttonSubText'>You and 115 other people liked this!</span></button></mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
-  </div>
-  <div class='postListItem'>
-    <mat-card class='postCard'>
-      <mat-card-header>
-        <div mat-card-avatar class='languageAvatar'></div>
-        <mat-card-title>Basic Webapplication</mat-card-title>
-        <mat-card-subtitle><b>JavaScript</b> || Posted by user/Bono on 18/04/2019 at 16:20pm</mat-card-subtitle>
-        <mat-card-subtitle><button mat-button><mat-icon>comment</mat-icon><span class='buttonSubText'>666 Comments</span></button><button mat-button color='primary'><mat-icon>thumb_up_alt</mat-icon><span class='buttonSubText'>You and 115 other people liked this!</span></button></mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
-  </div>
-  <div class='postListItem'>
-    <mat-card class='postCard'>
-      <mat-card-header>
-        <div mat-card-avatar class='languageAvatar'></div>
-        <mat-card-title>Basic Webapplication</mat-card-title>
-        <mat-card-subtitle><b>JavaScript</b> || Posted by user/Bono on 18/04/2019 at 16:20pm</mat-card-subtitle>
-        <mat-card-subtitle><button mat-button><mat-icon>comment</mat-icon><span class='buttonSubText'>666 Comments</span></button><button mat-button color='primary'><mat-icon>thumb_up_alt</mat-icon><span class='buttonSubText'>You and 115 other people liked this!</span></button></mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
-  </div>
-  <div class='postListItem'>
-    <mat-card class='postCard'>
-      <mat-card-header>
-        <div mat-card-avatar class='languageAvatar'></div>
-        <mat-card-title>Basic Webapplication</mat-card-title>
-        <mat-card-subtitle><b>JavaScript</b> || Posted by user/Bono on 18/04/2019 at 16:20pm</mat-card-subtitle>
-        <mat-card-subtitle><button mat-button><mat-icon>comment</mat-icon><span class='buttonSubText'>666 Comments</span></button><button mat-button color='primary'><mat-icon>thumb_up_alt</mat-icon><span class='buttonSubText'>You and 115 other people liked this!</span></button></mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
-  </div>
-  <div class='postListItem'>
-    <mat-card class='postCard'>
-      <mat-card-header>
-        <div mat-card-avatar class='languageAvatar'></div>
-        <mat-card-title>Basic Webapplication</mat-card-title>
-        <mat-card-subtitle><b>JavaScript</b> || Posted by user/Bono on 18/04/2019 at 16:20pm</mat-card-subtitle>
-        <mat-card-subtitle><button mat-button><mat-icon>comment</mat-icon><span class='buttonSubText'>666 Comments</span></button><button mat-button color='primary'><mat-icon>thumb_up_alt</mat-icon><span class='buttonSubText'>You and 115 other people liked this!</span></button></mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
-  </div>
-  <div class='postListItem'>
-    <mat-card class='postCard'>
-      <mat-card-header>
-        <div mat-card-avatar class='languageAvatar'></div>
-        <mat-card-title>Basic Webapplication</mat-card-title>
-        <mat-card-subtitle><b>JavaScript</b> || Posted by user/Bono on 18/04/2019 at 16:20pm</mat-card-subtitle>
-        <mat-card-subtitle><button mat-button><mat-icon>comment</mat-icon><span class='buttonSubText'>666 Comments</span></button><button mat-button color='primary'><mat-icon>thumb_up_alt</mat-icon><span class='buttonSubText'>You and 115 other people liked this!</span></button></mat-card-subtitle>
+            <div mat-card-avatar [routerLink]="['/Boards', post.boardId]" class='languageAvatar' [ngStyle]='post.boardIcon'></div>
+            <mat-card-title><a [routerLink]="['/Posts', post.id]">{{post.title}}</a></mat-card-title>
+            <mat-card-subtitle><b>{{post.boardName}}</b> || Posted by user/{{post.user}} on {{post.dateAdded | date:'longDate'}}</mat-card-subtitle>
+            <mat-card-subtitle>
+              <button mat-button><mat-icon>comment</mat-icon><span class='buttonSubText'>666 Comments</span></button>
+              <a mat-button color='primary' routerLink="/Posts"><mat-icon>thumb_up_alt</mat-icon><span class='buttonSubText'>You and 115 other people liked this!</span></a>
+            </mat-card-subtitle>
       </mat-card-header>
     </mat-card>
   </div>

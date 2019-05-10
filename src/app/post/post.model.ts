@@ -2,8 +2,11 @@ import { Board } from '../board/board.model';
 
 export class Post {
     constructor(
+        private _id: Number,
         private _title: string,
-        private _board: Board,
+        private _boardId: Number,
+        private _boardIcon: string,
+        private _boardName: string,
         private _user: string,
         private _dateAdded = new Date(),
         private _comments = new Array<string>(),
@@ -11,15 +14,24 @@ export class Post {
     ){}
 
     static fromJSON(json: any): Post {
-        const obj = new Post(json.title, Board.fromJSON(json.board), json.user, json.dateAdded, json.comments, json.likes);
+        const obj = new Post(json.id, json.title, json.boardId, json.boardIcon, json.boardName, json.user, json.dateAdded, json.comments, json.likes);
         return obj;
     }
 
+    get id(): Number{
+        return this._id;
+    }
     get title(): string{
         return this._title;
     }
-    get board(): Board{
-        return this._board;
+    get boardId(): Number{
+        return this._boardId;
+    }
+    get boardIcon() {
+        return {'background-image': `url(${this._boardIcon})`};
+    }
+    get boardName(): string{
+        return this._boardName;
     }
     get user(): string{
         return this._user;
