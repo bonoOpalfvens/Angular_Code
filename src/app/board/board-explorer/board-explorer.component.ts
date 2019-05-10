@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Board } from '../board.model';
-import { CodeDataService } from '../../code-data.service';
+import { CodeDataService } from '../../services/code-data.service';
 
 @Component({
   selector: 'app-board-explorer',

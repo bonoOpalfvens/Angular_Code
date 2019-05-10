@@ -1,5 +1,6 @@
 Home: change display settings: dateAdded(new), likes(best), comments(controversial)
-Sidenav: add iconnav with expand posibility
+    add reactive loading
+Sidenav: add iconnav with expand posibility + push/over
 Post: add post detail screen
     Comment: add scalable comment section
     Files: possible file upload with posts?

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 // Custom Components
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserModule } from './user/user.module';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
@@ -12,11 +12,15 @@ import { PostModule } from './post/post.module';
 import { NavigationModule } from './navigation/navigation.module';
 import { MenuBarComponent } from './navigation/menu-bar/menu-bar.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoaderComponent } from './navigation/loader/loader.component';
+import { LoaderService } from './services/loader.service';
+import { LoaderInterceptor } from './interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuBarComponent
+    MenuBarComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    LoaderService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Board } from './board/board.model';
+import { Board } from '../board/board.model';
 import { map, share } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Post } from './post/post.model';
+import { Post } from '../post/post.model';
 
 @Injectable({
   providedIn: 'root'
