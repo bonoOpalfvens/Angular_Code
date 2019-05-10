@@ -1,0 +1,16 @@
+Home: change display settings: dateAdded(new), likes(best), comments(controversial)
+Sidenav: add iconnav with expand posibility
+Post: add post detail screen
+    Comment: add scalable comment section
+    Files: possible file upload with posts?
+Board: add board detail screen
+    Filter: sort on comments, dateAdded, likes
+    add desciption with banners?
+    change icon urls to local?
+User: add Login/Registration/Password Recovery/User Management
+    Personal board section?
+    Personal post section?
+    Comments available on profile?
+    Endorsements(follow/like other user)?
+
+Notifications on comments/endorsements/trending board activity?
