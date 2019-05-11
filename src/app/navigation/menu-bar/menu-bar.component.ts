@@ -12,6 +12,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 export class MenuBarComponent implements OnInit {
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(map(result => result.matches));
+  isExpanded = false;
 
   searchString = new FormControl('');
   options: string[] = ['user/Bono', "user/Someoneelse", "board/Java", "board/CSharp"];
