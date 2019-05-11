@@ -2,13 +2,14 @@ import { Post } from '../post/post.model';
 
 export class Board {
     constructor(
+        private _id: Number,
         private _name: string,
         private _icon: string,
         private _posts = new Array<Post>()
     ){}
 
     static fromJSON(json: any): Board {
-        const obj = new Board(json.name, json.icon, json.posts);
+        const obj = new Board(json.id, json.name, json.icon, json.posts);
         return obj;
     }
 

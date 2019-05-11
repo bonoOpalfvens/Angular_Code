@@ -14,6 +14,7 @@
           <mat-icon *ngIf="isExpanded">chevron_right</mat-icon>
         </button>
       </mat-list-item>
+      <mat-divider></mat-divider>
       <mat-list-item [routerLink]="['Home']">
         <mat-icon mat-list-icon>home</mat-icon>
         <p matLine *ngIf="isExpanded">Home</p>
@@ -26,6 +27,7 @@
         <mat-icon mat-list-icon>list_alt</mat-icon>
         <p matLine *ngIf="isExpanded">Posts</p>
       </mat-list-item>
+      <mat-divider></mat-divider>
       <mat-list-item [routerLink]="['User']">
         <mat-icon mat-list-icon>person</mat-icon>
         <p matLine *ngIf="isExpanded">User</p>

@@ -1,6 +1,3 @@
-Home: change display settings: dateAdded(new), likes(best), comments(controversial)
-    add reactive loading
-Sidenav: add iconnav with expand posibility + push/over
 Post: add post detail screen
     Comment: add scalable comment section
     Files: possible file upload with posts?
@@ -15,3 +12,9 @@ User: add Login/Registration/Password Recovery/User Management
     Endorsements(follow/like other user)?
 
 Notifications on comments/endorsements/trending board activity?
+
+
+?   Sidenav: add iconnav with expand posibility + push/over
+?   Home: change display settings: 
+        dateAdded(new), likes(best), comments(controversial)
+        add reactive loading

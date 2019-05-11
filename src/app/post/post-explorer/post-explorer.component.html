@@ -1,26 +1,78 @@
-<h1>Featured Posts</h1>
-<div class='postList'>
-  <div *ngFor='let post of (posts | async)' class='postListItem'>
-    <mat-card class='postCard'>
+<h1>
+  Featured Posts
+</h1>
+
+<div class="postList">
+  <mat-button-toggle-group #group="matButtonToggleGroup">
+    <mat-button-toggle value="dateAdded" [checked]="true">
+      <mat-icon>update</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="likes">
+      <mat-icon>thumb_up_alt</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="comments">
+      <mat-icon>comment</mat-icon>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+  <div
+    *ngFor="let post of posts | async | slice: lowValue:highValue"
+    class="postListItem"
+  >
+    <mat-card class="postCard">
       <mat-card-header>
-        <div mat-card-avatar [routerLink]="['/Boards', post.boardId]" class='languageAvatar' [ngStyle]='post.boardIcon'>
-        </div>
-        <mat-card-title><a [routerLink]="['/Posts', post.id]">{{post.title}}</a></mat-card-title>
-        <mat-card-subtitle><a [routerLink]="['/Boards', post.boardId]"><b>{{post.boardName}}</b></a> || Posted by <a [routerLink]="['/Users', post.user]"><b>user/{{post.user}}</b></a> on
-          {{post.dateAdded | date:'longDate'}}</mat-card-subtitle>
+        <div
+          mat-card-avatar
+          [routerLink]="['/Boards', post.board.id]"
+          class="languageAvatar"
+          [ngStyle]="post.board.icon"
+        ></div>
+        <mat-card-title
+          ><a [routerLink]="['/Posts', post.id]">{{
+            post.title
+          }}</a></mat-card-title
+        >
+        <mat-card-subtitle
+          ><a [routerLink]="['/Boards', post.board.id]"
+            ><b>{{ post.board.name }}</b></a
+          >
+          || Posted by
+          <a [routerLink]="['/Users', post.user]"
+            ><b>user/{{ post.user }}</b></a
+          >
+          on {{ post.dateAdded | date: "longDate" }}</mat-card-subtitle
+        >
       </mat-card-header>
       <mat-card-content>
-        {{ (desc.length>600)? (desc | slice:0:600)+'....':(desc) }}
+        {{ desc.length > 600 ? (desc | slice: 0:600) + "...." : desc }}
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color='primary' class='visitButton' [routerLink]="['/Posts', post.id]">View</button>
-        <button mat-button>
-          <mat-icon>comment</mat-icon><span class='buttonSubText'>666 Comments</span>
+        <button
+          mat-raised-button
+          color="primary"
+          class="visitButton"
+          [routerLink]="['/Posts', post.id]"
+        >
+          View
         </button>
-        <a mat-button color='primary'>
-          <mat-icon>thumb_up_alt</mat-icon><span class='buttonSubText'>You and 115 other people liked this!</span>
+        <button mat-button>
+          <mat-icon>comment</mat-icon
+          ><span class="buttonSubText">666 Comments</span>
+        </button>
+        <a mat-button color="primary">
+          <mat-icon>thumb_up_alt</mat-icon
+          ><span class="buttonSubText"
+            >You and 115 other people liked this!</span
+          >
         </a>
       </mat-card-actions>
     </mat-card>
   </div>
+  <mat-paginator
+    length="{{ (posts | async)?.length }}"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    [showFirstLastButtons]="true"
+    (page)="pageEvent = getPaginatorData($event)"
+  >
+  </mat-paginator>
 </div>
