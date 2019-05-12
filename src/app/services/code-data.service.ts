@@ -13,16 +13,23 @@ export class CodeDataService {
 
   constructor(private http: HttpClient) { }
 
-  get boards$(): Observable<Board[]> {
+  boards$(): Observable<Board[]> {
     return this.http.get(`${environment.apiUrl}/board/`).pipe(
       map((list: any[]): Board[] => list.map(Board.fromJSON)),
       share()
     );
   }  
 
-  get posts$(): Observable<Post[]> {
+  posts$(): Observable<Post[]> {
     return this.http.get(`${environment.apiUrl}/post/`).pipe(
       map((list: any[]): Post[] => list.map(Post.fromJSON)),
+      share()
+    );
+  }  
+  
+  post$(id: number): Observable<Post> {
+    return this.http.get(`${environment.apiUrl}/post/${id}`).pipe(
+      map(Post.fromJSON),
       share()
     );
   }  

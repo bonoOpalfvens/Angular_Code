@@ -10,29 +10,23 @@ import { MaterialModule } from './material.module';
 import { BoardModule } from './board/board.module';
 import { PostModule } from './post/post.module';
 import { NavigationModule } from './navigation/navigation.module';
-import { MenuBarComponent } from './navigation/menu-bar/menu-bar.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { LoaderComponent } from './navigation/loader/loader.component';
 import { LoaderService } from './services/loader.service';
 import { LoaderInterceptor } from './interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MenuBarComponent,
-    LoaderComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule,
+    MaterialModule,
 
     NavigationModule,
-    UserModule,
-    MaterialModule,
     BoardModule,
     PostModule,
-    
+    UserModule,
+
     AppRoutingModule
   ],
   providers: [

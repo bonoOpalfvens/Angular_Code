@@ -9,7 +9,7 @@ import { CodeDataService } from '../../services/code-data.service';
   styleUrls: ['./board-explorer.component.css']
 })
 export class BoardExplorerComponent implements OnInit {
-  private _fetchBoards$: Observable<Board[]> = this._codeDataService.boards$;
+  private _fetchBoards$: Observable<Board[]> = this._codeDataService.boards$();
   constructor(private _codeDataService: CodeDataService) { }
 
   ngOnInit() {

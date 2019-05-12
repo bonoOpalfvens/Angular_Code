@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material.module';
 import { PostExplorerComponent } from './post-explorer/post-explorer.component';
 import { RouterModule } from '@angular/router';
+import { PostDetailComponent } from './post-detail/post-detail.component';
 
 @NgModule({
-  declarations: [PostExplorerComponent],
+  declarations: [PostExplorerComponent, PostDetailComponent],
   imports: [
     CommonModule,
     MaterialModule,

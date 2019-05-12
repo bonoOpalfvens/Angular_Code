@@ -4,12 +4,18 @@ import { BoardExplorerComponent } from './board/board-explorer/board-explorer.co
 import { PostExplorerComponent } from './post/post-explorer/post-explorer.component';
 import { HomeComponent } from './navigation/home/home.component';
 import { NotFoundComponent } from './navigation/not-found/not-found.component';
+import { PostDetailComponent } from './post/post-detail/post-detail.component';
+import { PostGuard } from './post/post.guard';
 
 const appRoutes: Routes = [
   { path: 'Home', component: HomeComponent },
   { path: 'NotFound', component: NotFoundComponent },
+
   { path: 'Boards', component: BoardExplorerComponent },
+
   { path: 'Posts', component: PostExplorerComponent },
+  { path: 'Post/:id', component: PostDetailComponent, resolve: { post: PostGuard } },
+
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
   { path: '**', redirectTo: 'NotFound', pathMatch: 'full' }
 ];
