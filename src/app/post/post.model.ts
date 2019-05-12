@@ -1,19 +1,26 @@
 import { Board } from '../board/board.model';
+import { User } from '../user/user.model';
+import { Comment } from './comment.model';
 
 export class Post {
+    private _board: Board;
+
     constructor(
         private _id: number,
         private _title: string,
-        private _board: Board,
-        private _user: string,
+        private _content: string,
+        private _user: User,
         private _dateAdded = new Date(),
-        private _comments = new Array<string>(),
+        private _comments = new Array<Comment>(),
         private _likes: number,
         private _isLiking: boolean
     ){}
 
     static fromJSON(json: any): Post {
-        const obj = new Post(json.id, json.title, Board.fromJSON(json.board), json.user, json.dateAdded, json.comments, json.likes, json.isLiking);
+        const obj = new Post(json.id, json.title, json.content, User.fromJSON(json.user), json.dateAdded, json.comments.map(Comment.fromJSON), json.likes, json.isLiking);
+        if(json.board)
+            obj.board = Board.fromJSON(json.board);
+
         console.log(obj);
         return obj;
     }
@@ -24,16 +31,19 @@ export class Post {
     get title(): string{
         return this._title;
     }
+    get content(): string{
+        return this._content;
+    }
     get board(): Board{
         return this._board;
     }
-    get user(): string{
+    get user(): User{
         return this._user;
     }
     get dateAdded(): Date{
         return this._dateAdded;
     }
-    get comments(): Array<string>{
+    get comments(): Array<Comment>{
         return this._comments;
     }
     get likes(): number{
@@ -41,5 +51,8 @@ export class Post {
     }
     get isLiking(): boolean{
         return this._isLiking;
+    }
+    set board(val: Board){
+        this._board = val;
     }
 }

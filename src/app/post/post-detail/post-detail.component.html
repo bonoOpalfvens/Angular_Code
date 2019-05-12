@@ -1,29 +1,76 @@
-<mat-card class="postCard">
+<mat-card>
   <mat-card-header>
-    <div mat-card-avatar [routerLink]="['/Boards', post.board.id]" class="languageAvatar" [ngStyle]="post.board.icon">
+    <div mat-card-avatar [routerLink]="['/Board', post.board.id]" class="languageAvatar" [ngStyle]="post.board.icon">
     </div>
     <mat-card-title>{{
           post.title
         }}</mat-card-title>
-    <mat-card-subtitle><a [routerLink]="['/Boards', post.board.id]"><b>{{ post.board.name }}</b></a>
+    <mat-card-subtitle><a [routerLink]="['/Board', post.board.id]"><b>{{ post.board.name }}</b></a>
       || Posted by
-      <a [routerLink]="['/Users', post.user]"><b>user/{{ post.user }}</b></a>
+      <a [routerLink]="['/User', post.user.id]"><b>user/{{ post.user.displayName }}</b></a>
       on {{ post.dateAdded | date: "longDate" }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
+    {{post.content}}
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>
-      <mat-icon>comment</mat-icon><span class="buttonSubText">
-        {{ post.comments.length }} Comments</span>
-    </button>
     <a mat-button *ngIf="post.isLiking; else notLiking" color="primary">
-      <mat-icon>thumb_up_alt</mat-icon><span class="buttonSubText">
-        You and {{ post.likes - 1 }} other people liked this!</span>
+      <mat-icon>thumb_up_alt</mat-icon>
+        You
+        <div *ngIf="post.likes > 1">
+          and {{ post.likes - 1 }} other people
+        </div>
+        liked this!
     </a>
     <ng-template #notLiking><a mat-button>
-        <mat-icon>thumb_up_alt</mat-icon><span class="buttonSubText">
-          {{ post.likes }} people liked this!</span>
+        <mat-icon>thumb_up_alt</mat-icon>
+          {{ post.likes }}
+          <span *ngIf="post.likes == 1; else multiplePeople">
+            person
+          </span>
+          <ng-template #multiplePeople>
+            people
+          </ng-template>
+          liked this!
       </a></ng-template>
   </mat-card-actions>
 </mat-card>
+
+
+<div *ngFor="let comment of post.comments | slice: lowValue:highValue" class="postListItem">
+    <mat-card class="postCard">
+      <mat-card-header>
+        <div mat-card-avatar [routerLink]="['/User', comment.user.id]" class="languageAvatar"
+          [ngStyle]="comment.user.avatar"></div>
+        <mat-card-subtitle>
+          Posted by
+          <a [routerLink]="['/User', post.user.id]"><b>user/{{ comment.user.displayName }}</b></a>
+          on {{ comment.dateAdded | date: "longDate" }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        {{ comment.content }}
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-button *ngIf="post.isLiking; else notLikingComment" color="primary">
+          <mat-icon>thumb_up_alt</mat-icon><span class="buttonSubText">
+            You
+            <div *ngIf="comment.likes > 1">
+              and {{ comment.likes - 1 }} other people
+            </div>
+            liked this!</span>
+        </a>
+        <ng-template #notLikingComment><a mat-button>
+            <mat-icon>thumb_up_alt</mat-icon><span class="buttonSubText">
+              {{ comment.likes }}
+              <span *ngIf="comment.likes == 1; else multiplePeople">
+                person
+              </span>
+              liked this!
+            </span>
+          </a></ng-template>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <mat-paginator length="{{ (post.comments)?.length }}" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+    [showFirstLastButtons]="true" (page)="pageEvent = getPaginatorData($event)">
+  </mat-paginator>
