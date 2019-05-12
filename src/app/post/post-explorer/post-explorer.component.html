@@ -1,19 +1,18 @@
-<h1>
+<h1 id="header">
   Featured Posts
 </h1>
-
+<mat-button-toggle-group #group="matButtonToggleGroup" style="float: right; margin-top: 12px;">
+  <mat-button-toggle value="dateAdded" [checked]="true">
+    <mat-icon>update</mat-icon>
+  </mat-button-toggle>
+  <mat-button-toggle value="likes">
+    <mat-icon>thumb_up_alt</mat-icon>
+  </mat-button-toggle>
+  <mat-button-toggle value="comments">
+    <mat-icon>comment</mat-icon>
+  </mat-button-toggle>
+</mat-button-toggle-group>
 <div class="postList">
-  <mat-button-toggle-group #group="matButtonToggleGroup">
-    <mat-button-toggle value="dateAdded" [checked]="true">
-      <mat-icon>update</mat-icon>
-    </mat-button-toggle>
-    <mat-button-toggle value="likes">
-      <mat-icon>thumb_up_alt</mat-icon>
-    </mat-button-toggle>
-    <mat-button-toggle value="comments">
-      <mat-icon>comment</mat-icon>
-    </mat-button-toggle>
-  </mat-button-toggle-group>
   <div
     *ngFor="let post of posts | async | slice: lowValue:highValue"
     class="postListItem"

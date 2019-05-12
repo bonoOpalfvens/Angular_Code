@@ -19,6 +19,10 @@
   background-color: #5262bc !important;
 }
 
+.active {
+  background-color: #3c4b9c !important;
+}
+
 mat-list-item {
   color: white !important;
 }

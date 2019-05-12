@@ -15,20 +15,20 @@
         </button>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item [routerLink]="['Home']">
+      <mat-list-item [routerLinkActive]="['active']" [routerLink]="['Home']">
         <mat-icon mat-list-icon>home</mat-icon>
         <p matLine *ngIf="isExpanded">Home</p>
       </mat-list-item>
-      <mat-list-item [routerLink]="['Boards']">
+      <mat-list-item [routerLinkActive]="['active']" [routerLink]="['Boards']">
         <mat-icon mat-list-icon>view_module</mat-icon>
         <p matLine *ngIf="isExpanded">Boards</p>
       </mat-list-item>
-      <mat-list-item [routerLink]="['Posts']">
+      <mat-list-item [routerLinkActive]="['active']" [routerLink]="['Posts']">
         <mat-icon mat-list-icon>list_alt</mat-icon>
         <p matLine *ngIf="isExpanded">Posts</p>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item [routerLink]="['User']">
+      <mat-list-item [routerLinkActive]="['active']" [routerLink]="['User']">
         <mat-icon mat-list-icon>person</mat-icon>
         <p matLine *ngIf="isExpanded">User</p>
       </mat-list-item>

@@ -1,4 +1,5 @@
 import { Post } from '../post/post.model';
+import { environment } from 'src/environments/environment';
 
 export class Board {
     constructor(
@@ -11,6 +12,9 @@ export class Board {
     static fromJSON(json: any): Board {
         const obj = new Board(json.id, json.name, json.icon, json.posts);
         return obj;
+    }
+    get id(): Number {
+        return this._id;
     }
 
     get name(): string{

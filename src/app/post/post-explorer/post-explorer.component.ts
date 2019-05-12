@@ -30,5 +30,6 @@ export class PostExplorerComponent implements OnInit {
   getPaginatorData(event){
     this.lowValue = event.pageIndex * event.pageSize;
     this.highValue = this.lowValue + event.pageSize;
+    window.scrollTo(0, 0);
  }
 }
