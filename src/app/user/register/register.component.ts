@@ -1,11 +1,8 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, AbstractControl, ValidatorFn, FormBuilder } from '@angular/forms';
 import { AuthenticationService } from '../authentication.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { EventEmitter } from 'protractor';
-import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -13,73 +10,19 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  @Output() public newUser = new EventEmitter();
   public user: FormGroup;
-  public errorMsg: string;
 
-  constructor(
-    private authService: AuthenticationService,
-    private fb: FormBuilder,
-    private router: Router
-  ) { }
+  constructor(private authService: AuthenticationService, private fb: FormBuilder) {}
 
   ngOnInit() {
     this.user = this.fb.group({
       email: ['', [Validators.required, Validators.email, serverSideValidateUnique(this.authService.checkEmailAvailability)]],
       username: ['', [Validators.required, serverSideValidateUnique(this.authService.checkUserNameAvailability)]],
       passwordGroup: this.fb.group({
-        password: ['', [Validators.required, Validators.minLength(8)]],
-        confirmPassword: ['', Validators.required]
-      }, { validator: comparePasswords })
+          password: ['', [Validators.required, Validators.minLength(8)]],
+          confirmPassword: ['', Validators.required]
+        }, { validator: comparePasswords })
     })
-  }
-
-  onSubmit() {
-    this.authService
-      .register(
-        this.user.value.email,
-        this.user.value.username,
-        this.user.value.passwordGroup.password
-      )
-      .subscribe(
-        val => {
-          if (val) {
-            this.router.navigate(['/recipe/list']);
-          } else {
-            this.errorMsg = `Could not login`;
-          }
-        },
-        (err: HttpErrorResponse) => {
-          console.log(err);
-          if (err.error instanceof Error) {
-            this.errorMsg = `Error while trying to register ${
-              this.user.value.email
-              }: ${err.error.message}`;
-          } else {
-            this.errorMsg = `Error ${err.status} while trying to register user ${
-              this.user.value.email
-              }: ${err.error}`;
-          }
-        }
-      );
-  }
-
-  getErrorMessage(errors: any) {
-    if (!errors)
-      return null;
-    if (errors.required) {
-      return 'is required';
-    } else if (errors.minlength) {
-      return `needs at least ${
-        errors.minlength.requiredLength
-        } characters (got ${errors.minlength.actualLength})`;
-    } else if (errors.userAlreadyExists) {
-      return `user already exists`;
-    } else if (errors.email) {
-      return `not a valid email address`;
-    } else if (errors.passwordsDiffer) {
-      return `passwords are not the same`;
-    }
   }
 }
 

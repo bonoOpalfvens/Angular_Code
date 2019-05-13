@@ -41,10 +41,10 @@ export class AuthenticationService {
     );
   }
 
-  register(email: string, userName: string, password: string): Observable<boolean> {
+  register(email: string, password: string, userName: string, passwordConfirmation: string): Observable<boolean> {
     return this.http.post(
       `${environment.apiUrl}/account`,
-      { email, userName, password, passwordConfirmation : password },
+      { email, password, userName, passwordConfirmation },
       { responseType: 'text' }
     ).pipe(
       map((token: any) => {
