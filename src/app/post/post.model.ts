@@ -4,6 +4,7 @@ import { Comment } from './comment.model';
 
 export class Post {
     private _board: Board;
+    private _comments = new Array<Comment>();
 
     constructor(
         private _id: number,
@@ -11,16 +12,18 @@ export class Post {
         private _content: string,
         private _user: User,
         private _dateAdded = new Date(),
-        private _comments = new Array<Comment>(),
+        private _noComments: number,
         private _likes: number,
         private _isLiking: boolean
     ){}
 
     static fromJSON(json: any): Post {
-        const obj = new Post(json.id, json.title, json.content, User.fromJSON(json.user), json.dateAdded, json.comments.map(Comment.fromJSON), json.likes, json.isLiking);
+        const obj = new Post(json.id, json.title, json.content, User.fromJSON(json.user), json.dateAdded, json.noComments, json.likes, json.isLiking);
         if(json.board)
-            obj.board = Board.fromJSON(json.board);
+            obj._board = Board.fromJSON(json.board);
 
+        if(json.comments)
+            obj._noComments = json.comments.map(Comment.fromJSON);
         return obj;
     }
 
@@ -45,13 +48,13 @@ export class Post {
     get comments(): Array<Comment>{
         return this._comments;
     }
+    get noComments(): number{
+        return this._noComments;
+    }
     get likes(): number{
         return this._likes;
     }
     get isLiking(): boolean{
         return this._isLiking;
-    }
-    set board(val: Board){
-        this._board = val;
     }
 }

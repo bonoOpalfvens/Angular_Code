@@ -11,7 +11,7 @@ import { Post } from '../post.model';
 })
 export class PostExplorerComponent implements OnInit {
   private _fetchPosts$: Observable<Post[]> = this._codeDataService.posts$();
-  private _sortingStrategy: function;
+  private _sortingStrategy;
 
   pageSizeOptions: number[] = [10, 15, 25, 50];
 
@@ -55,9 +55,9 @@ export class PostExplorerComponent implements OnInit {
   }
 
   sortByComments = (a: Post, b: Post) => {
-    if(a.comments.length > b.comments.length)
+    if(a.noComments > b.noComments)
       return -1;
-    if(a.comments.length < b.comments.length)
+    if(a.noComments < b.noComments)
       return 1;
     this.sortByLikes(a, b);
   }

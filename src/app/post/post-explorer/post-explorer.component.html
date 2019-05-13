@@ -35,7 +35,7 @@
         </button>
         <button mat-button>
           <mat-icon>comment</mat-icon><span class="buttonSubText">
-            {{ post.comments.length }} Comments</span>
+            {{ post.noComments }} Comments</span>
         </button>
         <a mat-button *ngIf="post.isLiking; else notLiking" color="primary">
           <mat-icon>thumb_up_alt</mat-icon><span class="buttonSubText">

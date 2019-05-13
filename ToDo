@@ -16,5 +16,5 @@ Notifications on comments/endorsements/trending board activity?
 
 ?   Sidenav: add iconnav with expand posibility + push/over
 ?   Home: change display settings: 
-        dateAdded(new), likes(best), comments(controversial)
-        add reactive loading
+        dateAdded(new), likes(best), comments(controversial) 
+        add reactive loading - ?limit posts read from server (Bandwidth conservation)
