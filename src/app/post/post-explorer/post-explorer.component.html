@@ -2,13 +2,13 @@
   Featured Posts
 </h1>
 <mat-button-toggle-group #group="matButtonToggleGroup" style="float: right; margin-top: 12px;">
-  <mat-button-toggle value="dateAdded" [checked]="true">
+  <mat-button-toggle (change)="this.sort($event.value)"  matTooltip="Sort by: New" value="dateAdded" [checked]="true">
     <mat-icon>update</mat-icon>
   </mat-button-toggle>
-  <mat-button-toggle value="likes">
+  <mat-button-toggle (change)="this.sort($event.value)" matTooltip="Sort by: Best" value="likes">
     <mat-icon>thumb_up_alt</mat-icon>
   </mat-button-toggle>
-  <mat-button-toggle value="comments">
+  <mat-button-toggle (change)="this.sort($event.value)" matTooltip="Sort by: Controversial" value="comments">
     <mat-icon>comment</mat-icon>
   </mat-button-toggle>
 </mat-button-toggle-group>

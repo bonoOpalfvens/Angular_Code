@@ -21,7 +21,6 @@ export class Post {
         if(json.board)
             obj.board = Board.fromJSON(json.board);
 
-        console.log(obj);
         return obj;
     }
 

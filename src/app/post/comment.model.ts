@@ -13,7 +13,6 @@ export class Comment {
 
     static fromJSON(json: any): Comment {
         const obj = new Comment(json.id, User.fromJSON(json.user), json.dateAdded, json.content, json.likes, json.isLiking);
-        console.log(obj);
         return obj;
     }
 

@@ -20,7 +20,7 @@ export class User {
 
     static fromJSON(json: any): User {
         const obj = new User(json.id, json.userName, json.displayName, json.avatar, json.email, json.emailIsPrivate, json.firstName, json.lastName, json.description, json.github, json.boards, json.likedPosts, json.createdPosts);
-        console.log(obj);
+
         return obj;
     }
 
