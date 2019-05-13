@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Resolve, Router } from '@angular/router';
 import { Observable, EMPTY } from 'rxjs';
 import { Post } from './post.model';
 import { CodeDataService } from '../services/code-data.service';

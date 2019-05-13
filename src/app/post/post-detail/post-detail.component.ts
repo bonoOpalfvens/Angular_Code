@@ -11,12 +11,6 @@ import { Post } from '../post.model';
 export class PostDetailComponent implements OnInit {
   public post: Post;
 
-  pageSizeOptions: number[] = [10, 15, 25, 50];
-  pageIndex:number = 0;
-  pageSize:number = 15;
-  lowValue:number = 0;
-  highValue:number = 15; 
-
   constructor(
     private route: ActivatedRoute,
     private codeDataService: CodeDataService  
@@ -26,11 +20,18 @@ export class PostDetailComponent implements OnInit {
     this.route.data.subscribe(item =>
       this.post = item['post']
     );
-  }      
+  }
+
+  pageSizeOptions: number[] = [10, 15, 25, 50];
+  pageIndex:number = 0;
+  pageSize:number = 15;
+  lowValue:number = 0;
+  highValue:number = 15;       
 
   getPaginatorData(event){
     this.lowValue = event.pageIndex * event.pageSize;
     this.highValue = this.lowValue + event.pageSize;
     window.scrollTo(0, 0);
-  }
+ }
+
 }

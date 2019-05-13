@@ -23,7 +23,7 @@ export class Post {
             obj._board = Board.fromJSON(json.board);
 
         if(json.comments)
-            obj._comments = json.comments.map(Comment.fromJSON);
+            obj._noComments = json.comments.map(Comment.fromJSON);
         return obj;
     }
 
