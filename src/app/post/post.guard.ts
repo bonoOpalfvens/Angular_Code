@@ -15,7 +15,7 @@ export class PostGuard  implements Resolve<Post> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Post> {
-    return this.codeDataService.post$(route.params['id']).pipe(
+    return this.codeDataService.post$(route.params.id).pipe(
       catchError(err => {
         this.router.navigate(['NotFound']);
         return EMPTY;

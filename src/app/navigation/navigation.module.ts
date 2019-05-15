@@ -9,6 +9,9 @@ import { AppRoutingModule } from '../app-routing.module';
 import { LoaderComponent } from './loader/loader.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoaderService } from '../services/loader.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoaderInterceptor } from '../interceptor';
 
 @NgModule({
   declarations: [MenuBarComponent, LoaderComponent, HomeComponent, NotFoundComponent],
@@ -20,6 +23,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     BoardModule,
     PostModule
   ],
-  exports: [MenuBarComponent, LoaderComponent]
+  exports: [MenuBarComponent, LoaderComponent],
+  providers: [
+    LoaderService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }]
 })
 export class NavigationModule { }

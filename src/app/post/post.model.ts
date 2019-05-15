@@ -15,46 +15,57 @@ export class Post {
         private _noComments: number,
         private _likes: number,
         private _isLiking: boolean
-    ){}
+    ) {}
 
     static fromJSON(json: any): Post {
-        const obj = new Post(json.id, json.title, json.content, User.fromJSON(json.user), json.dateAdded, json.noComments, json.likes, json.isLiking);
-        if(json.board)
+        const obj = new Post(
+            json.id,
+            json.title,
+            json.content,
+            User.fromJSON(json.user),
+            json.dateAdded,
+            json.noComments,
+            json.likes,
+            json.isLiking
+        );
+
+        if (json.board)
             obj._board = Board.fromJSON(json.board);
 
-        if(json.comments)
+        if (json.comments)
             obj._comments = json.comments.map(Comment.fromJSON);
+
         return obj;
     }
 
-    get id(): number{
+    get id(): number {
         return this._id;
     }
-    get title(): string{
+    get title(): string {
         return this._title;
     }
-    get content(): string{
+    get content(): string {
         return this._content;
     }
-    get board(): Board{
+    get board(): Board {
         return this._board;
     }
-    get user(): User{
+    get user(): User {
         return this._user;
     }
-    get dateAdded(): Date{
+    get dateAdded(): Date {
         return this._dateAdded;
     }
-    get comments(): Array<Comment>{
+    get comments(): Array<Comment> {
         return this._comments;
     }
-    get noComments(): number{
+    get noComments(): number {
         return this._noComments;
     }
-    get likes(): number{
+    get likes(): number {
         return this._likes;
     }
-    get isLiking(): boolean{
+    get isLiking(): boolean {
         return this._isLiking;
     }
 }

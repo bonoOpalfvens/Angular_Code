@@ -15,7 +15,7 @@ export class MenuBarComponent implements OnInit {
   isExpanded = false;
 
   searchString = new FormControl('');
-  options: string[] = ['user/Bono', "user/Someoneelse", "board/Java", "board/CSharp"];
+  options: string[] = ['user/Bono', 'user/Someoneelse', 'board/Java', 'board/CSharp'];
   filteredOptions: Observable<string[]>;
 
   constructor(private breakpointObserver: BreakpointObserver) {}

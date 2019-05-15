@@ -6,6 +6,7 @@ import { HomeComponent } from './navigation/home/home.component';
 import { NotFoundComponent } from './navigation/not-found/not-found.component';
 import { PostDetailComponent } from './post/post-detail/post-detail.component';
 import { PostGuard } from './post/post.guard';
+import { RegisterComponent } from './user/register/register.component';
 
 const appRoutes: Routes = [
   { path: 'Home', component: HomeComponent },
@@ -15,6 +16,8 @@ const appRoutes: Routes = [
 
   { path: 'Posts', component: PostExplorerComponent },
   { path: 'Post/:id', component: PostDetailComponent, resolve: { post: PostGuard } },
+
+  { path: 'User/Register', component: RegisterComponent },
 
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
   { path: '**', redirectTo: 'NotFound', pathMatch: 'full' }

@@ -1,0 +1,88 @@
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="user" class="form">
+      <h1>Register</h1>
+      <mat-form-field class="fill-width" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          aria-label="email"
+          type="text"
+          formControlName="email"
+        />
+        <mat-error
+          *ngIf="user.get('email').errors && user.get('email').touched"
+        >
+          {{ getErrorMessage(user.get("email").errors) }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field
+        class="fill-width"
+        appearance="outline"
+        matTooltipPosition="right"
+        matTooltip="Usernames can only contain the following characters: upper case (A-Z), lower case (a-z), number (0-9), underscores and hyphens"
+      >
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          aria-label="username"
+          type="text"
+          formControlName="username"
+        />
+        <mat-error
+          *ngIf="user.get('username').errors && user.get('username').touched"
+        >
+          {{ getErrorMessage(user.get("username").errors) }}
+        </mat-error>
+      </mat-form-field>
+      <div formGroupName="passwordGroup">
+        <mat-form-field
+          class="fill-width"
+          appearance="outline"
+          matTooltipPosition="right"
+          matTooltip="Password must contain at least one of each of the following: upper case (A-Z), lower case (a-z), number (0-9) and special character (! ? | % $ # _ - @)"
+        >
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            aria-label="password"
+            type="password"
+            formControlName="password"
+          />
+          <mat-error
+            style="display: block; margin-bottom: 3px;"
+            *ngIf="
+              user.get('passwordGroup').get('password').errors &&
+              user.get('passwordGroup').get('password').touched
+            "
+          >
+            {{
+              getErrorMessage(user.get("passwordGroup").get("password").errors)
+            }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="fill-width" appearance="outline">
+          <mat-label>Confirm password</mat-label>
+          <input
+            matInput
+            aria-label="comfirm password"
+            type="password"
+            formControlName="confirmPassword"
+          />
+        </mat-form-field>
+        <mat-error style="FLOAT: LEFT; font-size: 0.8em; margin-top: -24px;"
+          *ngIf="
+            user.get('passwordGroup').errors &&
+            user.get('passwordGroup').get('confirmPassword').touched &&
+            user.get('passwordGroup').get('password').touched
+          "
+        >
+        {{ getErrorMessage(user.get("passwordGroup").errors) }}
+        </mat-error>
+      </div>
+      <br />
+      <button mat-raised-button color="primary">Register</button>
+    </form>
+  </mat-card-content>
+</mat-card>
+REMOVE {{ user.value | json }}
