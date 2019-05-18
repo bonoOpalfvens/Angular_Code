@@ -13,6 +13,7 @@ export class CodeDataService {
 
   constructor(private http: HttpClient) { }
 
+  // Boards
   boards$(): Observable<Board[]> {
     return this.http.get(`${environment.apiUrl}/board/`).pipe(
       map((list: any[]): Board[] => list.map(Board.fromJSON)),
@@ -20,6 +21,7 @@ export class CodeDataService {
     );
   }
 
+  // Posts
   posts$(): Observable<Post[]> {
     return this.http.get(`${environment.apiUrl}/post/`).pipe(
       map((list: any[]): Post[] => list.map(Post.fromJSON)),
@@ -34,11 +36,28 @@ export class CodeDataService {
     );
   }
 
+  // User
   registerUser(email: string, userName: string, password: string): any {
     return this.http.post(
       `${environment.apiUrl}/account`,
       { email, password, userName },
       { responseType: 'text' }
     );
+  }
+
+  loginUser(email: string, password: string): any {
+    return this.http.post(
+      `${environment.apiUrl}/account/login`,
+      { email, password },
+      { responseType: 'text' }
+    );
+  }
+
+  checkUserNameAvailability = (username: string): Observable<boolean> => {
+    return this.http.get<boolean>(`${environment.apiUrl}/account/checkusername`, { params: { username } });
+  }
+
+  checkEmailAvailability = (email: string): Observable<boolean> => {
+    return this.http.get<boolean>(`${environment.apiUrl}/account/checkemail`, { params: { email } });
   }
 }

@@ -36,13 +36,25 @@ export class AuthenticationService {
     );
   }
 
+  login(email: string, password: string): Observable<boolean> {
+    return this._codeDataService.loginUser(email, password).pipe(
+      map((token: any) => {
+        if (token) {
+          localStorage.setItem(this._tokenKey, token);
+          this._user$.next(email);
+          return true;
+        }
+        return false;
+      })
+    );
+  }
+
   logout() {
     if (this._user$.getValue()) {
       localStorage.removeItem('currentUser');
       this._user$.next(null);
     }
   }
-
 }
 
 function parseJwt(token) {

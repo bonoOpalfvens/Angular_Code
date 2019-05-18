@@ -11,6 +11,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { AuthenticationService } from "../authentication.service";
+import { CodeDataService } from 'src/app/services/code-data.service';
 
 @Component({
   selector: "app-register",
@@ -23,6 +24,7 @@ export class RegisterComponent implements OnInit {
   public errorMsg: string;
 
   constructor(
+    private dataService: CodeDataService,
     private authService: AuthenticationService,
     private fb: FormBuilder,
     private router: Router
@@ -38,6 +40,7 @@ export class RegisterComponent implements OnInit {
             /(?!.*\.{2})^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i
           )
         ],
+        serverSideValidateEmail(this.dataService.checkEmailAvailability)
       ],
       username: [
         "",
@@ -46,7 +49,8 @@ export class RegisterComponent implements OnInit {
           Validators.minLength(3),
           Validators.maxLength(10),
           Validators.pattern(/^[A-Za-z0-9_-]+$/)
-        ]
+        ],
+        serverSideValidateUsername(this.dataService.checkUserNameAvailability)
       ],
       passwordGroup: this.fb.group(
         {
@@ -121,6 +125,19 @@ function serverSideValidateEmail(
       map(available => {
         if (available) return null;
         return { emailAlreadyExists: true };
+      })
+    );
+  };
+}
+
+function serverSideValidateUsername(
+  checkAvailabilityFn: (n: string) => Observable<boolean>
+): ValidatorFn {
+  return (control: AbstractControl): Observable<{ [key: string]: any }> => {
+    return checkAvailabilityFn(control.value).pipe(
+      map(available => {
+        if (available) return null;
+        return { usernameAlreadyExists: true };
       })
     );
   };
