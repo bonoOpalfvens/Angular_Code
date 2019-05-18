@@ -33,4 +33,12 @@ export class CodeDataService {
       share()
     );
   }
+
+  registerUser(email: string, userName: string, password: string): any {
+    return this.http.post(
+      `${environment.apiUrl}/account`,
+      { email, password, userName },
+      { responseType: 'text' }
+    );
+  }
 }

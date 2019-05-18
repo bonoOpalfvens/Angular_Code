@@ -25,8 +25,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthenticationService,
     private fb: FormBuilder,
-    private router: Router,
-    private http: HttpClient
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -38,7 +37,7 @@ export class RegisterComponent implements OnInit {
           Validators.pattern(
             /(?!.*\.{2})^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i
           )
-        ]
+        ],
       ],
       username: [
         "",
@@ -62,7 +61,30 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onSubmit() {}
+  onSubmit() {
+    if(this.user.valid){
+      this.authService.register(this.user.value.email, this.user.value.username, this.user.value.passwordGroup.password)
+      .subscribe( val => {
+        if(val) {
+          this.router.navigate(["/Home"]);
+        } else {
+          this.errorMsg = "Could not register";
+        }
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err);
+        if (err.error instanceof Error) {
+          this.errorMsg = `Error while trying to register user ${
+            this.user.value.email
+          }: ${err.error.message}`;
+        } else {
+          this.errorMsg = `Error ${err.status} while trying to register user ${
+            this.user.value.email
+          }: ${err.error}`;
+        }
+      });
+    }
+  }
 
   getErrorMessage(errors: any) {
     if (!errors) return null;

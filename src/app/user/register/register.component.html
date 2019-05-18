@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-content>
-    <form [formGroup]="user" class="form">
+    <form [formGroup]="user" (ngSubmit)="onSubmit()" class="form">
       <h1>Register</h1>
       <mat-form-field class="fill-width" appearance="outline">
         <mat-label>Email</mat-label>
