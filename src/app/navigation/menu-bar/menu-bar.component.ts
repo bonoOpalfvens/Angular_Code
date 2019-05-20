@@ -27,9 +27,9 @@ export class MenuBarComponent {
     private _router: Router,
     private _codeDataService: CodeDataService
   ) {
-    this._authService.user$.subscribe(user => {
-      this.user$ = this._codeDataService.userByEmail(user);
-      console.log(user);
+    this._authService.user$.pipe().subscribe(user => {
+      if (user) this.user$ = this._codeDataService.userByEmail(user);
+      else this.user$ = null;
     });
   }
 
