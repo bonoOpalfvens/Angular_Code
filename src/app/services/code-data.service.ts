@@ -5,6 +5,7 @@ import { Board } from '../board/board.model';
 import { map, share } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Post } from '../post/post.model';
+import { User } from '../user/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,20 @@ export class CodeDataService {
       `${environment.apiUrl}/account/login`,
       { email, password },
       { responseType: 'text' }
+    );
+  }
+
+  userByEmail(email: string): any {
+    return this.http.get(`${environment.apiUrl}/account/byEmail/${email}`).pipe(
+      map(User.fromJSON),
+      share()
+    );
+  }
+
+  userByUsername(username: string): any {
+    return this.http.get(`${environment.apiUrl}/account/${username}`).pipe(
+      map(User.fromJSON),
+      share()
     );
   }
 

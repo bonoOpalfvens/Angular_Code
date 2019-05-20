@@ -26,11 +26,21 @@
         <p matLine *ngIf="isExpanded">Posts</p>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item [routerLinkActive]="['active']" [routerLink]="['User/Login']">
-        <mat-icon mat-list-icon>person</mat-icon>
-        <p matLine *ngIf="isExpanded">User</p>
+
+      <mat-list-item *ngIf="user$ | async else notLoggedIn; let user" [routerLinkActive]="['active']" [routerLink]="['User']">
+        <mat-icon  mat-list-icon [ngStyle]="user.avatar" class="userAvatar"></mat-icon>
+        <ng-template #notLoggedIn><mat-icon mat-list-icon>person</mat-icon></ng-template>
+        <p matLine *ngIf="isExpanded">{{ user.displayName }}</p>
       </mat-list-item>
-      <mat-list-item [routerLink]="['User/Logout']">
+
+      <ng-template #notLoggedIn>
+          <mat-list-item [routerLinkActive]="['active']" [routerLink]="['User/Login']">
+            <mat-icon  mat-list-icon>person</mat-icon>
+            <p matLine *ngIf="isExpanded">Login</p>
+          </mat-list-item>
+      </ng-template>
+
+      <mat-list-item *ngIf="user$ | async" (click)="logout()">
         <mat-icon mat-list-icon>exit_to_app</mat-icon>
         <p matLine *ngIf="isExpanded">Logout</p>
       </mat-list-item>

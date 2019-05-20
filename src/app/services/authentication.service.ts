@@ -8,6 +8,7 @@ import { CodeDataService } from '../services/code-data.service';
 })
 export class AuthenticationService {
   private readonly _tokenKey = 'currentUser';
+  private readonly _emailKey = 'email';
   private _user$: BehaviorSubject<string>;
 
   constructor(private _codeDataService: CodeDataService) {
@@ -17,11 +18,12 @@ export class AuthenticationService {
         new Date(parseInt(parsedToken.exp, 10) * 1000) < new Date();
       if (expires) {
         localStorage.removeItem(this._tokenKey);
+        localStorage.removeItem(this._emailKey);
         parsedToken = null;
       }
     }
     this._user$ = new BehaviorSubject<string>(
-      parsedToken && parsedToken.unique_name
+      localStorage.getItem(this._emailKey)
     );
   }
 
@@ -43,6 +45,7 @@ export class AuthenticationService {
       map((token: any) => {
         if (token) {
           localStorage.setItem(this._tokenKey, token);
+          localStorage.setItem(this._emailKey, email);
           this._user$.next(email);
           return true;
         }
@@ -56,6 +59,7 @@ export class AuthenticationService {
       map((token: any) => {
         if (token) {
           localStorage.setItem(this._tokenKey, token);
+          localStorage.setItem(this._emailKey, email);
           this._user$.next(email);
           return true;
         }
@@ -66,7 +70,8 @@ export class AuthenticationService {
 
   logout() {
     if (this._user$.getValue()) {
-      localStorage.removeItem('currentUser');
+      localStorage.removeItem(this._tokenKey);
+      localStorage.removeItem(this._emailKey);
       this._user$.next(null);
     }
   }

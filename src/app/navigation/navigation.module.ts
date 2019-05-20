@@ -12,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoaderService } from '../services/loader.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from '../interceptors/loader.interceptor';
+import { AuthenticationService } from '../services/authentication.service';
+import { AuthenticationInterceptor } from '../interceptors/authentication.interceptor';
 
 @NgModule({
   declarations: [MenuBarComponent, LoaderComponent, HomeComponent, NotFoundComponent],
@@ -26,6 +28,8 @@ import { LoaderInterceptor } from '../interceptors/loader.interceptor';
   exports: [MenuBarComponent, LoaderComponent],
   providers: [
     LoaderService,
-    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }]
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+    AuthenticationService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }]
 })
 export class NavigationModule { }
