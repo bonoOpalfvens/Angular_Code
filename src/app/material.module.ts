@@ -1,21 +1,38 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatMenuModule, MatButtonModule, MatIconModule, MatTooltipModule, MatInputModule, MatFormFieldModule, MatAutocompleteModule, MatCardModule, MatListModule, MatGridListModule, MatSidenavModule, MatProgressSpinnerModule, MatProgressBarModule, MatButtonToggleModule, MatPaginatorModule } from '@angular/material';
+import {
+  MatToolbarModule,
+  MatMenuModule,
+  MatButtonModule,
+  MatIconModule,
+  MatTooltipModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatAutocompleteModule,
+  MatCardModule,
+  MatListModule,
+  MatGridListModule,
+  MatSidenavModule,
+  MatProgressBarModule,
+  MatButtonToggleModule,
+  MatPaginatorModule,
+  MatSnackBarModule
+} from '@angular/material';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    
+
     // AngularMaterialAnimations
     BrowserAnimationsModule,
     // AngularMaterial
     MatToolbarModule,
-    MatMenuModule, 
+    MatMenuModule,
     MatButtonModule,
-    MatIconModule, 
-    MatTooltipModule, 
+    MatIconModule,
+    MatTooltipModule,
     MatInputModule,
     MatFormFieldModule,
     MatAutocompleteModule,
@@ -25,17 +42,18 @@ import { MatToolbarModule, MatMenuModule, MatButtonModule, MatIconModule, MatToo
     MatSidenavModule,
     MatProgressBarModule,
     MatButtonToggleModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSnackBarModule
   ],
   exports: [
     // AngularMaterialAnimations
     BrowserAnimationsModule,
     // AngularMaterial
     MatToolbarModule,
-    MatMenuModule, 
+    MatMenuModule,
     MatButtonModule,
-    MatIconModule, 
-    MatTooltipModule, 
+    MatIconModule,
+    MatTooltipModule,
     MatInputModule,
     MatFormFieldModule,
     MatAutocompleteModule,
@@ -45,7 +63,8 @@ import { MatToolbarModule, MatMenuModule, MatButtonModule, MatIconModule, MatToo
     MatSidenavModule,
     MatProgressBarModule,
     MatButtonToggleModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSnackBarModule
   ]
 })
-export class MaterialModule { }
+export class MaterialModule {}

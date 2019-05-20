@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
   Validators,
@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthenticationService } from '../authentication.service';
 import { CodeDataService } from 'src/app/services/code-data.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,6 @@ import { CodeDataService } from 'src/app/services/code-data.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  @Output() public newUser = new EventEmitter();
   public user: FormGroup;
   public errorMsg: string;
 
@@ -27,7 +27,8 @@ export class RegisterComponent implements OnInit {
     private dataService: CodeDataService,
     private authService: AuthenticationService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -54,10 +55,17 @@ export class RegisterComponent implements OnInit {
       ],
       passwordGroup: this.fb.group(
         {
-          password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(30),
-            Validators.pattern(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,30}$/)
-          ]
-        ],
+          password: [
+            '',
+            [
+              Validators.required,
+              Validators.minLength(6),
+              Validators.maxLength(30),
+              Validators.pattern(
+                /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,30}$/
+              )
+            ]
+          ],
           confirmPassword: ['', Validators.required]
         },
         { validator: comparePasswords }
@@ -67,26 +75,38 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.user.valid) {
-      this.authService.register(this.user.value.email, this.user.value.username, this.user.value.passwordGroup.password)
-      .subscribe( val => {
-        if (val) {
-          this.router.navigate(['/Home']);
-        } else {
-          this.errorMsg = 'Could not register';
-        }
-      },
-      (err: HttpErrorResponse) => {
-        console.log(err);
-        if (err.error instanceof Error) {
-          this.errorMsg = `Error while trying to register user ${
-            this.user.value.email
-          }: ${err.error.message}`;
-        } else {
-          this.errorMsg = `Error ${err.status} while trying to register user ${
-            this.user.value.email
-          }: ${err.error}`;
-        }
-      });
+      this.authService
+        .register(
+          this.user.value.email,
+          this.user.value.username,
+          this.user.value.passwordGroup.password
+        )
+        .subscribe(
+          val => {
+            if (val) {
+              this.router.navigate(['/Home']);
+              this.snackBar.open(
+                `Succesfully registered user: ${this.user.value.email}`,
+                'Dismiss',
+                { duration: 8000 }
+              );
+            } else {
+              this.snackBar.open(
+                `Could not register user: ${this.user.value.email}`,
+                'Dismiss',
+                { duration: 8000 }
+              );
+            }
+          },
+          (err: HttpErrorResponse) => {
+            this.snackBar.open(
+              `Error while trying to register user: ${this.user.value.email}`,
+              'Dismiss',
+              { duration: 15000 }
+            );
+            console.log(err);
+          }
+        );
     }
   }
 
