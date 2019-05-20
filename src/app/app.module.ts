@@ -11,6 +11,7 @@ import { BoardModule } from './board/board.module';
 import { PostModule } from './post/post.module';
 import { NavigationModule } from './navigation/navigation.module';
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AuthenticationInterceptor } from './interceptors/authentication.interce
     BoardModule,
     PostModule,
     UserModule,
+    HomeModule,
 
     AppRoutingModule
   ],

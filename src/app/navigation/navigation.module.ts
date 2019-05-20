@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material.module';
-import { HomeComponent } from './home/home.component';
-import { BoardModule } from '../board/board.module';
-import { PostModule } from '../post/post.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { LoaderComponent } from './loader/loader.component';
@@ -16,14 +13,12 @@ import { AuthenticationService } from '../services/authentication.service';
 import { AuthenticationInterceptor } from '../interceptors/authentication.interceptor';
 
 @NgModule({
-  declarations: [MenuBarComponent, LoaderComponent, HomeComponent, NotFoundComponent],
+  declarations: [MenuBarComponent, LoaderComponent, NotFoundComponent],
   imports: [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-    AppRoutingModule,
-    BoardModule,
-    PostModule
+    AppRoutingModule
   ],
   exports: [MenuBarComponent, LoaderComponent],
   providers: [

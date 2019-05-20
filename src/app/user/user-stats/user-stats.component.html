@@ -1,0 +1,43 @@
+<mat-card *ngIf="user">
+  <mat-card-header>
+    <div
+      mat-card-avatar
+      [routerLink]="['/User', user.userName]"
+      class="userAvatar"
+      [ngStyle]="user.avatar"
+    ></div>
+    <mat-card-title>Hello, {{ user.displayName }}!</mat-card-title>
+    <mat-card-subtitle>Take a look at some of your stats!</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-grid-list cols="3" rowHeight="2:1">
+      <mat-grid-tile>
+        <button mat-flat-button color="primary">
+          <mat-icon mat-list-icon>
+            list_alt </mat-icon
+          ><br />
+          {{ user.noCreatedPosts }}
+          {{ user.noCreatedPosts === 1 ? "Post" : "Posts" }}
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-flat-button color="accent">
+          <mat-icon mat-list-icon>
+            favorite </mat-icon
+          ><br />
+          {{ user.noLikedPosts }}
+          {{ user.noLikedPosts === 1 ? "Like" : "Likes" }}
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-flat-button class="magenta">
+          <mat-icon mat-list-icon>
+            textsms </mat-icon
+          ><br />
+          {{ user.noCreatedComments }}
+          {{ user.noCreatedComments === 1 ? "Comment" : "Comments" }}
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>

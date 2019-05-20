@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { BoardExplorerComponent } from './board/board-explorer/board-explorer.component';
 import { PostExplorerComponent } from './post/post-explorer/post-explorer.component';
-import { HomeComponent } from './navigation/home/home.component';
+import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './navigation/not-found/not-found.component';
 import { PostDetailComponent } from './post/post-detail/post-detail.component';
 import { PostGuard } from './post/post.guard';
