@@ -9,9 +9,10 @@ import { PostGuard } from './post/post.guard';
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
 import { AuthGuard } from './user/auth.guard';
+import { AuthUserGuard } from './auth-user.guard';
 
 const appRoutes: Routes = [
-  { path: 'Home', component: HomeComponent },
+  { path: 'Home', component: HomeComponent, resolve: { user: AuthUserGuard } },
   { path: 'NotFound', component: NotFoundComponent },
 
   { path: 'Boards', component: BoardExplorerComponent },

@@ -1,7 +1,7 @@
-<app-introduction *ngIf="!(user$ | async); else loggedIn"></app-introduction>
+<app-introduction *ngIf="!user else loggedIn"></app-introduction>
 
 <ng-template #loggedIn>
-    <app-user-stats [user]="user$ | async"></app-user-stats>
+    <app-user-stats [user]="user"></app-user-stats>
 </ng-template>
 
 <mat-divider></mat-divider>

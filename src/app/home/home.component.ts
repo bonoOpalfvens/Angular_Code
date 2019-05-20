@@ -1,25 +1,22 @@
-import { Component } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/user/user.model';
-import { AuthenticationService } from 'src/app/services/authentication.service';
-import { CodeDataService } from 'src/app/services/code-data.service';
-import { debounce, debounceTime } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  public user$: Observable<User>;
+export class HomeComponent implements OnInit {
+  public user: User;
 
   constructor(
-    private _authService: AuthenticationService,
-    private _codeDataService: CodeDataService
-  ) {
-    this._authService.user$.subscribe(user => {
-      if (user) this.user$ = this._codeDataService.userByEmail(user);
-      else this.user$ = null;
-    });
+    private route: ActivatedRoute
+  ) { }
+
+  ngOnInit() {
+    this.route.data.subscribe(item =>
+      this.user = item.user
+    );
   }
 }

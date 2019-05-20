@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CodeDataService } from 'src/app/services/code-data.service';
 import { Post } from '../post.model';
 
 @Component({
@@ -12,23 +11,22 @@ export class PostDetailComponent implements OnInit {
   public post: Post;
 
   pageSizeOptions: number[] = [10, 15, 25, 50];
-  pageIndex:number = 0;
-  pageSize:number = 15;
-  lowValue:number = 0;
-  highValue:number = 15; 
+  pageIndex = 0;
+  pageSize = 15;
+  lowValue = 0;
+  highValue = 15;
 
   constructor(
-    private route: ActivatedRoute,
-    private codeDataService: CodeDataService  
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.route.data.subscribe(item =>
-      this.post = item['post']
+      this.post = item.post
     );
-  }      
+  }
 
-  getPaginatorData(event){
+  getPaginatorData(event) {
     this.lowValue = event.pageIndex * event.pageSize;
     this.highValue = this.lowValue + event.pageSize;
     window.scrollTo(0, 0);
