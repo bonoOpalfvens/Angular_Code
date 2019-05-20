@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable, EMPTY } from 'rxjs';
-import { AuthenticationService } from './services/authentication.service';
-import { User } from './user/user.model';
-import { CodeDataService } from './services/code-data.service';
+import { AuthenticationService } from '../services/authentication.service';
+import { CodeDataService } from '../services/code-data.service';
 import { catchError } from 'rxjs/operators';
+import { User } from '../user/user.model';
 
 @Injectable({
   providedIn: 'root'

@@ -5,11 +5,11 @@ import { PostExplorerComponent } from './post/post-explorer/post-explorer.compon
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './navigation/not-found/not-found.component';
 import { PostDetailComponent } from './post/post-detail/post-detail.component';
-import { PostGuard } from './post/post.guard';
-import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
-import { AuthGuard } from './user/auth.guard';
-import { AuthUserGuard } from './auth-user.guard';
+import { RegisterComponent } from './user/register/register.component';
+import { AuthUserGuard } from './guards/auth-user.guard';
+import { PostGuard } from './guards/post.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 const appRoutes: Routes = [
   { path: 'Home', component: HomeComponent, resolve: { user: AuthUserGuard } },

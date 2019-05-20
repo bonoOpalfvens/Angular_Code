@@ -3,14 +3,13 @@ import { NgModule } from '@angular/core';
 
 // Custom Components
 import { AppComponent } from './app.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { UserModule } from './user/user.module';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
 import { BoardModule } from './board/board.module';
 import { PostModule } from './post/post.module';
 import { NavigationModule } from './navigation/navigation.module';
-import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
 import { HomeModule } from './home/home.module';
 
 @NgModule({
@@ -30,8 +29,6 @@ import { HomeModule } from './home/home.module';
 
     AppRoutingModule
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
