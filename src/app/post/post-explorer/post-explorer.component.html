@@ -23,7 +23,7 @@
           }}</a></mat-card-title>
         <mat-card-subtitle><a [routerLink]="['/Board', post.board.id]"><b>{{ post.board.name }}</b></a>
           || Posted by
-          <a [routerLink]="['/User', post.user.id]"><b>user/{{post.user.displayName}}</b></a>
+          <a [routerLink]="['/User', post.user.userName]"><b>user/{{post.user.displayName}}</b></a>
           on {{ post.dateAdded | date: "longDate" }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>

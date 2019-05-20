@@ -8,6 +8,7 @@ import { PostDetailComponent } from './post/post-detail/post-detail.component';
 import { PostGuard } from './post/post.guard';
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
+import { AuthGuard } from './user/auth.guard';
 
 const appRoutes: Routes = [
   { path: 'Home', component: HomeComponent },
@@ -20,6 +21,8 @@ const appRoutes: Routes = [
 
   { path: 'User/Login', component: LoginComponent },
   { path: 'User/Register', component: RegisterComponent },
+  { path: 'User', component: RegisterComponent, canActivate: [ AuthGuard ] },
+  { path: 'User/:username', component: PostDetailComponent, resolve: { post: PostGuard } },
 
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
   { path: '**', redirectTo: 'NotFound', pathMatch: 'full' }

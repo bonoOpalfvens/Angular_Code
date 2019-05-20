@@ -9,11 +9,10 @@ import { CodeDataService } from '../../services/code-data.service';
   styleUrls: ['./board-explorer.component.css']
 })
 export class BoardExplorerComponent implements OnInit {
-  private _fetchBoards$: Observable<Board[]> = this._codeDataService.boards$();
-  constructor(private _codeDataService: CodeDataService) { }
+  private _fetchBoards$: Observable<Board[]> = this._codeDataService.topBoards$();
+  constructor(private _codeDataService: CodeDataService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   get boards() {
     return this._fetchBoards$;

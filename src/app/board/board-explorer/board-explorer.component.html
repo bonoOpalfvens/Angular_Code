@@ -1,15 +1,17 @@
 <div>
   <h1>Featured Boards</h1>
-  <div layout='row'>
-    <mat-card *ngFor='let board of (boards | async)' class='boardCard'>
+  <div layout="row">
+    <mat-card *ngFor="let board of boards | async" class="boardCard">
       <mat-card-header>
-        <div mat-card-avatar class='boardIcon' [ngStyle]='board.icon'></div>
-        <mat-card-title>{{board.name}}</mat-card-title>
-        <mat-card-subtitle>{{board.description}}</mat-card-subtitle>
+        <div mat-card-avatar class="boardIcon" [ngStyle]="board.icon"></div>
+        <mat-card-title>{{ board.name }}</mat-card-title>
+        <mat-card-subtitle>{{ board.description }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-actions>
-        <button mat-raised-button color='primary' class='visitButton'>Visit</button>
-        <button mat-mini-fab class='favorite'>
+        <button mat-raised-button color="primary" class="visitButton">
+          Visit
+        </button>
+        <button mat-mini-fab class="favorite">
           <mat-icon>favorite</mat-icon>
         </button>
       </mat-card-actions>

@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
@@ -9,28 +8,13 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
   templateUrl: './menu-bar.component.html',
   styleUrls: ['./menu-bar.component.css']
 })
+export class MenuBarComponent {
+  public isHandset$: Observable<boolean> = this._breakpointObserver
+    .observe(Breakpoints.Handset)
+    .pipe(map(result => result.matches));
+  public isExpanded = false;
 
-export class MenuBarComponent implements OnInit {
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(map(result => result.matches));
-  isExpanded = false;
-
-  searchString = new FormControl('');
-  options: string[] = ['user/Bono', 'user/Someoneelse', 'board/Java', 'board/CSharp'];
-  filteredOptions: Observable<string[]>;
-
-  constructor(private breakpointObserver: BreakpointObserver) {}
-
-  ngOnInit() {
-    this.filteredOptions = this.searchString.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      );
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  }
+  constructor(
+    private _breakpointObserver: BreakpointObserver,
+  ) {}
 }

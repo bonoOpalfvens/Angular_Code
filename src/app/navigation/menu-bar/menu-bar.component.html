@@ -1,7 +1,6 @@
 <mat-sidenav-container class="sidenav-container" autosize>
   <mat-sidenav
     #sidenav
-    class="sidenav"
     mode="side"
     opened="true"
     hasBackdrop="false"
@@ -37,32 +36,12 @@
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content class="sidenav-content"> </mat-sidenav-content>
 </mat-sidenav-container>
 
 <mat-toolbar color="primary">
   <span>FluxCode</span>
   <span class="fill-central-space"></span>
-  <mat-form-field class="searchBar">
-    <input
-      type="search"
-      matInput
-      [formControl]="searchString"
-      [matAutocomplete]="auto"
-    />
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option
-        *ngFor="let option of filteredOptions | async"
-        [value]="option"
-      >
-        {{ option }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-  <button mat-icon-button>
-    <mat-icon>search</mat-icon>
-  </button>
-  <span class="fill-central-space"></span>
 </mat-toolbar>
 <app-loader></app-loader>
 <ng-content></ng-content>
+

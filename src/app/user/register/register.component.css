@@ -11,7 +11,7 @@ mat-card{
 }
   
 .fill-width {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     width: 100%;
 }
 
@@ -19,5 +19,5 @@ mat-icon {
     margin-right: 8px;
 }
 p.subtext{
-    font-size: 0.7em;
+    font-size: 0.9em;
 }

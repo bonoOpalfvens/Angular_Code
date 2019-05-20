@@ -10,10 +10,7 @@ import { Post } from '../post.model';
   styleUrls: ['./post-explorer.component.css']
 })
 export class PostExplorerComponent implements OnInit {
-
-  constructor(
-    private _codeDataService: CodeDataService
-  ) { }
+  constructor(private _codeDataService: CodeDataService) {}
 
   get posts() {
     return this._fetchPosts$;
@@ -39,26 +36,20 @@ export class PostExplorerComponent implements OnInit {
   }
 
   sortByDateAdded = (a: Post, b: Post) => {
-    if (a.dateAdded > b.dateAdded)
-      return -1;
-    if (a.dateAdded < b.dateAdded)
-      return 1;
+    if (a.dateAdded > b.dateAdded) return -1;
+    if (a.dateAdded < b.dateAdded) return 1;
     return 0;
   }
 
   sortByLikes = (a: Post, b: Post) => {
-    if (a.likes > b.likes)
-      return -1;
-    if (a.likes < b.likes)
-      return 1;
+    if (a.likes > b.likes) return -1;
+    if (a.likes < b.likes) return 1;
     this.sortByDateAdded(a, b);
   }
 
   sortByComments = (a: Post, b: Post) => {
-    if (a.noComments > b.noComments)
-      return -1;
-    if (a.noComments < b.noComments)
-      return 1;
+    if (a.noComments > b.noComments) return -1;
+    if (a.noComments < b.noComments) return 1;
     this.sortByLikes(a, b);
   }
 
@@ -74,6 +65,8 @@ export class PostExplorerComponent implements OnInit {
         this._sortingStrategy = this.sortByComments;
         break;
     }
-    this._fetchPosts$ = this._fetchPosts$.pipe(map(items => items.sort(this._sortingStrategy)));
+    this._fetchPosts$ = this._fetchPosts$.pipe(
+      map(items => items.sort(this._sortingStrategy))
+    );
   }
 }

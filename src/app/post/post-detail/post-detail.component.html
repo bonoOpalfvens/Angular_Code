@@ -7,7 +7,7 @@
         }}</mat-card-title>
     <mat-card-subtitle><a [routerLink]="['/Board', post.board.id]"><b>{{ post.board.name }}</b></a>
       || Posted by
-      <a [routerLink]="['/User', post.user.id]"><b>user/{{ post.user.displayName }}</b></a>
+      <a [routerLink]="['/User', post.user.userName]"><b>user/{{ post.user.displayName }}</b></a>
       on {{ post.dateAdded | date: "longDate" }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
@@ -41,10 +41,10 @@
     <div *ngFor="let comment of post.comments | slice: lowValue:highValue" class="commentItem">
       <mat-card class="postCard">
         <mat-card-header>
-          <div mat-card-avatar [routerLink]="['/User', comment.user.id]" class="userAvatar"
+          <div mat-card-avatar [routerLink]="['/User', comment.user.userName]" class="userAvatar"
             [ngStyle]="comment.user.avatar"></div>
           <mat-card-title>
-            <a [routerLink]="['/User', post.user.id]"><b>user/{{ comment.user.displayName }}</b></a>
+            <a [routerLink]="['/User', post.user.userName]"><b>user/{{ comment.user.displayName }}</b></a>
           </mat-card-title>
           <mat-card-subtitle>
             Posted on {{ comment.dateAdded | date: "longDate" }}</mat-card-subtitle>

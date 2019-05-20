@@ -4,6 +4,7 @@ body::-webkit-scrollbar{
     width: 0;
 }
 
-h1, h2, h3, h4, h5 {
-    font-family: 'Roboto', sans-serif;
+body, mat-card-title, mat-card-content {
+    font-family: 'Exo 2', sans-serif;
+
 }
