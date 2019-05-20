@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../../services/authentication.service';
 import { CodeDataService } from 'src/app/services/code-data.service';
 import { MatSnackBar } from '@angular/material';
 

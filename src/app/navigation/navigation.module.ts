@@ -11,7 +11,7 @@ import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoaderService } from '../services/loader.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoaderInterceptor } from '../interceptor';
+import { LoaderInterceptor } from '../interceptors/loader.interceptor';
 
 @NgModule({
   declarations: [MenuBarComponent, LoaderComponent, HomeComponent, NotFoundComponent],

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { environment } from 'src/environments/environment.prod';
 import { map } from 'rxjs/operators';
 import { CodeDataService } from '../services/code-data.service';
 
@@ -14,16 +13,32 @@ export class AuthenticationService {
   constructor(private _codeDataService: CodeDataService) {
     let parsedToken = parseJwt(localStorage.getItem(this._tokenKey));
     if (parsedToken) {
-      const expires = new Date(parseInt(parsedToken.exp, 10) * 1000) < new Date();
+      const expires =
+        new Date(parseInt(parsedToken.exp, 10) * 1000) < new Date();
       if (expires) {
         localStorage.removeItem(this._tokenKey);
         parsedToken = null;
       }
     }
-    this._user$ = new BehaviorSubject<string>(parsedToken && parsedToken.unique_name);
+    this._user$ = new BehaviorSubject<string>(
+      parsedToken && parsedToken.unique_name
+    );
   }
 
-  register(email: string, userName: string, password: string): Observable<boolean> {
+  get user$(): BehaviorSubject<string> {
+    return this._user$;
+  }
+
+  get token(): string {
+    const localToken = localStorage.getItem(this._tokenKey);
+    return !!localToken ? localToken : '';
+  }
+
+  register(
+    email: string,
+    userName: string,
+    password: string
+  ): Observable<boolean> {
     return this._codeDataService.registerUser(email, userName, password).pipe(
       map((token: any) => {
         if (token) {
@@ -58,8 +73,7 @@ export class AuthenticationService {
 }
 
 function parseJwt(token) {
-  if (!token)
-    return null;
+  if (!token) return null;
 
   const base64Token = token.split('.')[1];
   const base64 = base64Token.replace(/-/g, '+').replace(/_/g, '/');
