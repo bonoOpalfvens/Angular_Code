@@ -1,22 +1,22 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {
   FormGroup,
   Validators,
   AbstractControl,
   FormBuilder,
   ValidatorFn
-} from "@angular/forms";
-import { Router } from "@angular/router";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
-import { AuthenticationService } from "../authentication.service";
+} from '@angular/forms';
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AuthenticationService } from '../authentication.service';
 import { CodeDataService } from 'src/app/services/code-data.service';
 
 @Component({
-  selector: "app-register",
-  templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.css"]
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
   @Output() public newUser = new EventEmitter();
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.user = this.fb.group({
       email: [
-        "",
+        '',
         [
           Validators.required,
           Validators.pattern(
@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
         serverSideValidateEmail(this.dataService.checkEmailAvailability)
       ],
       username: [
-        "",
+        '',
         [
           Validators.required,
           Validators.minLength(3),
@@ -54,11 +54,11 @@ export class RegisterComponent implements OnInit {
       ],
       passwordGroup: this.fb.group(
         {
-          password: ["", [Validators.required, Validators.minLength(6), Validators.maxLength(30), 
+          password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(30),
             Validators.pattern(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,30}$/)
           ]
         ],
-          confirmPassword: ["", Validators.required]
+          confirmPassword: ['', Validators.required]
         },
         { validator: comparePasswords }
       )
@@ -66,13 +66,13 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.user.valid){
+    if (this.user.valid) {
       this.authService.register(this.user.value.email, this.user.value.username, this.user.value.passwordGroup.password)
       .subscribe( val => {
-        if(val) {
-          this.router.navigate(["/Home"]);
+        if (val) {
+          this.router.navigate(['/Home']);
         } else {
-          this.errorMsg = "Could not register";
+          this.errorMsg = 'Could not register';
         }
       },
       (err: HttpErrorResponse) => {
@@ -92,7 +92,7 @@ export class RegisterComponent implements OnInit {
 
   getErrorMessage(errors: any) {
     if (!errors) return null;
-    if (errors.required) return "Field is required";
+    if (errors.required) return 'Field is required';
     else if (errors.minlength)
       return `Field needs at least ${
         errors.minlength.requiredLength
@@ -110,8 +110,8 @@ export class RegisterComponent implements OnInit {
 }
 
 function comparePasswords(control: AbstractControl): { [key: string]: any } {
-  const password = control.get("password");
-  const confirmPassword = control.get("confirmPassword");
+  const password = control.get('password');
+  const confirmPassword = control.get('confirmPassword');
   return password.value === confirmPassword.value
     ? null
     : { passwordsDiffer: true };
