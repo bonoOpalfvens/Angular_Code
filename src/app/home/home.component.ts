@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/user/user.model';
 import { ActivatedRoute } from '@angular/router';
+import { CodeDataService } from '../services/code-data.service';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   public user: User;
+  public posts$ = this._codeDataService.posts$();
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _codeDataService: CodeDataService
   ) { }
 
   ngOnInit() {

@@ -4,9 +4,11 @@ import { MaterialModule } from '../material.module';
 import { PostExplorerComponent } from './post-explorer/post-explorer.component';
 import { RouterModule } from '@angular/router';
 import { PostDetailComponent } from './post-detail/post-detail.component';
+import { PostListComponent } from './post-list/post-list.component';
+import { PostCardComponent } from './post-card/post-card.component';
 
 @NgModule({
-  declarations: [PostExplorerComponent, PostDetailComponent],
+  declarations: [PostExplorerComponent, PostDetailComponent, PostListComponent, PostCardComponent],
   imports: [
     CommonModule,
     MaterialModule,

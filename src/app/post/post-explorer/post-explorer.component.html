@@ -1,6 +1,3 @@
-<h1 id="header">
-  Featured Posts
-</h1>
 <mat-button-toggle-group #group="matButtonToggleGroup" style="float: right; margin-top: 12px;">
   <mat-button-toggle (change)="this.sort($event.value)"  matTooltip="Sort by: New" value="dateAdded" [checked]="true">
     <mat-icon>update</mat-icon>
@@ -14,51 +11,7 @@
 </mat-button-toggle-group>
 <div class="postList">
   <div *ngFor="let post of posts | async | slice: lowValue:highValue" class="postListItem">
-    <mat-card class="postCard">
-      <mat-card-header>
-        <div mat-card-avatar [routerLink]="['/Board', post.board.id]" class="languageAvatar"
-          [ngStyle]="post.board.icon"></div>
-        <mat-card-title><a [routerLink]="['/Post', post.id]">{{
-            post.title
-          }}</a></mat-card-title>
-        <mat-card-subtitle><a [routerLink]="['/Board', post.board.id]"><b>{{ post.board.name }}</b></a>
-          || Posted by
-          <a [routerLink]="['/User', post.user.userName]"><b>user/{{post.user.displayName}}</b></a>
-          on {{ post.dateAdded | date: "longDate" }}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        {{ post.content.length > 600 ? (post.content | slice: 0:600) + "...." : post.content }}
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" class="visitButton" [routerLink]="['/Post', post.id]">
-          View
-        </button>
-        <button mat-button>
-          <mat-icon>comment</mat-icon><span class="buttonSubText">
-            {{ post.noComments }} Comments</span>
-        </button>
-        <a mat-button *ngIf="post.isLiking; else notLiking" color="primary">
-          <mat-icon>thumb_up_alt</mat-icon><span class="buttonSubText">
-            You
-            <div *ngIf="post.likes > 1">
-              and {{ post.likes - 1 }} other people
-            </div>
-            liked this!</span>
-        </a>
-        <ng-template #notLiking><a mat-button>
-            <mat-icon>thumb_up_alt</mat-icon><span class="buttonSubText">
-              {{ post.likes }}
-              <span *ngIf="post.likes == 1; else multiplePeople">
-                person
-              </span>
-              <ng-template #multiplePeople>
-                people
-              </ng-template>
-              liked this!
-            </span>
-          </a></ng-template>
-      </mat-card-actions>
-    </mat-card>
+    <app-post-card [post]="post"></app-post-card>
   </div>
   <mat-paginator length="{{ (posts | async)?.length }}" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
     [showFirstLastButtons]="true" (page)="pageEvent = getPaginatorData($event)">

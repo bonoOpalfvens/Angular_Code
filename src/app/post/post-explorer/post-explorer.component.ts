@@ -1,7 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CodeDataService } from 'src/app/services/code-data.service';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Component, Input } from '@angular/core';
 import { Post } from '../post.model';
 
 @Component({
@@ -9,25 +6,15 @@ import { Post } from '../post.model';
   templateUrl: './post-explorer.component.html',
   styleUrls: ['./post-explorer.component.css']
 })
-export class PostExplorerComponent implements OnInit {
-  constructor(private _codeDataService: CodeDataService) {}
-
-  get posts() {
-    return this._fetchPosts$;
-  }
-  private _fetchPosts$: Observable<Post[]> = this._codeDataService.posts$();
+export class PostExplorerComponent {
+  @Input() posts: Post[];
   private _sortingStrategy;
 
-  pageSizeOptions: number[] = [10, 15, 25, 50];
-
-  pageIndex = 0;
-  pageSize = 15;
-  lowValue = 0;
-  highValue = 15;
-
-  ngOnInit() {
-    this.sort('dateAdded');
-  }
+  public pageSizeOptions: number[] = [10, 15, 25, 50];
+  public pageIndex = 0;
+  public pageSize = 15;
+  public lowValue = 0;
+  public highValue = 15;
 
   getPaginatorData(event) {
     this.lowValue = event.pageIndex * event.pageSize;
@@ -65,8 +52,6 @@ export class PostExplorerComponent implements OnInit {
         this._sortingStrategy = this.sortByComments;
         break;
     }
-    this._fetchPosts$ = this._fetchPosts$.pipe(
-      map(items => items.sort(this._sortingStrategy))
-    );
+    this.posts = this.posts.sort(this._sortingStrategy);
   }
 }
