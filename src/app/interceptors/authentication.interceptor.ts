@@ -20,9 +20,10 @@ export class AuthenticationInterceptor implements HttpInterceptor {
       const clonedRequest = req.clone({
         headers: req.headers.set(
           'Authorization',
-          `Bearer ${this.authService.token}`
+          `Bearer ${this.authService.token.substr(1, this.authService.token.length - 2)}`
         )
       });
+      console.log(clonedRequest)
       return next.handle(clonedRequest);
     }
     return next.handle(req);

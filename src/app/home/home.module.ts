@@ -24,7 +24,6 @@ import { IntroductionComponent } from './introduction/introduction.component';
     UserModule
   ],
   providers: [
-    AuthenticationService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }]
+    AuthenticationService]
 })
 export class HomeModule { }

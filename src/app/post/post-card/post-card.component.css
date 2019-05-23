@@ -35,3 +35,6 @@ mat-card-actions>button:hover, mat-card-actions>a:hover{
 .visitButton {
     width: 150px;
 }
+div{
+    display: inline;
+}

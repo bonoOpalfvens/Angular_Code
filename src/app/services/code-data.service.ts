@@ -36,6 +36,13 @@ export class CodeDataService {
     );
   }
 
+  likeBoard(id: number): any {
+    return this.http.post(
+      `${environment.apiUrl}/board/${id}/like`,
+      { responseType: 'text' }
+    );
+  }
+
   // Posts
   posts$(): Observable<Post[]> {
     return this.http.get(`${environment.apiUrl}/post/`).pipe(
@@ -51,10 +58,33 @@ export class CodeDataService {
     );
   }
 
-  createPost$(title: string, content: string): any {
+  createPost(boardId: number, title: string, content: string): any {
     return this.http.post(
       `${environment.apiUrl}/post`,
-      { title, content },
+      { boardId, title, content },
+      { responseType: 'text' }
+    );
+  }
+
+  likePost(id: number): any {
+    return this.http.post(
+      `${environment.apiUrl}/post/${id}/like`,
+      { responseType: 'text' }
+    );
+  }
+
+  // Comments
+  likeComment(postId: number, commentId: number): any {
+    return this.http.post(
+      `${environment.apiUrl}/post/${postId}/comment/${commentId}/like`,
+      { responseType: 'text' }
+    );
+  }
+
+  createComment(postId: number, content: string): any {
+    return this.http.post(
+      `${environment.apiUrl}/post/${postId}/comment`,
+      { content },
       { responseType: 'text' }
     );
   }

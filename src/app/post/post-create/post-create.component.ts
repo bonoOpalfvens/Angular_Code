@@ -42,7 +42,7 @@ export class PostCreateComponent implements OnInit {
 
   onSubmit() {
     if (this.post.valid) {
-      this._codeDataService.createPost$(this.post.value.title, this.post.value.content)
+      this._codeDataService.createPost(this.post.value.title, this.post.value.content)
       .subscribe(val => {
         if (val) {
           this._router.navigate([`/Post/${val}`]);
