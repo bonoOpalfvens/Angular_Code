@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { BoardExplorerComponent } from './board-explorer/board-explorer.component';
 import { MaterialModule } from '../material.module';
 import { Routes, RouterModule } from '@angular/router';
+import { BoardOverviewComponent } from './board-overview/board-overview.component';
+import { BoardCardComponent } from './board-card/board-card.component';
 
 const routes: Routes = [
   { path: 'Boards', component: BoardExplorerComponent }
 ];
 
 @NgModule({
-  declarations: [BoardExplorerComponent],
+  declarations: [BoardExplorerComponent, BoardOverviewComponent, BoardCardComponent],
   imports: [
     CommonModule,
     MaterialModule,

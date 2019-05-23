@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
-import { BoardExplorerComponent } from './board/board-explorer/board-explorer.component';
 import { PostExplorerComponent } from './post/post-explorer/post-explorer.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './navigation/not-found/not-found.component';
@@ -10,12 +9,13 @@ import { RegisterComponent } from './user/register/register.component';
 import { AuthUserGuard } from './guards/auth-user.guard';
 import { PostGuard } from './guards/post.guard';
 import { AuthGuard } from './guards/auth.guard';
+import { BoardOverviewComponent } from './board/board-overview/board-overview.component';
 
 const appRoutes: Routes = [
   { path: 'Home', component: HomeComponent, resolve: { user: AuthUserGuard } },
   { path: 'NotFound', component: NotFoundComponent },
 
-  { path: 'Boards', component: BoardExplorerComponent },
+  { path: 'Boards', component: BoardOverviewComponent, resolve: { user: AuthUserGuard }  },
 
   { path: 'Posts', component: PostExplorerComponent },
   { path: 'Post/:id', component: PostDetailComponent, resolve: { post: PostGuard } },

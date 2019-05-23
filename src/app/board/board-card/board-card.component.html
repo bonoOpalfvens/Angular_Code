@@ -1,0 +1,42 @@
+<mat-card class="boardCard">
+  <mat-card-header>
+    <div mat-card-avatar class="boardIcon" [ngStyle]="board.icon"></div>
+    <mat-card-title>{{ board.name }}</mat-card-title>
+    <mat-card-subtitle>{{ board.description }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions>
+    <button
+      mat-raised-button
+      color="primary"
+      class="visitButton"
+      [routerLink]="['/Board', board.id]"
+    >
+      View {{ board.noPosts }} posts
+    </button>
+    <a mat-button *ngIf="board.isLiking; else notLiking" color="primary">
+      <mat-icon>thumb_up_alt</mat-icon
+      ><span class="buttonSubText">
+        You
+        <div *ngIf="board.likes > 1">
+          and {{ board.likes - 1 }} other people
+        </div>
+        liked this!</span
+      >
+    </a>
+    <ng-template #notLiking
+      ><a mat-button>
+        <mat-icon>thumb_up_alt</mat-icon
+        ><span class="buttonSubText">
+          {{ board.likes }}
+          <span *ngIf="board.likes == 1; else multiplePeople">
+            person
+          </span>
+          <ng-template #multiplePeople>
+            people
+          </ng-template>
+          liked this!
+        </span>
+      </a></ng-template
+    >
+  </mat-card-actions>
+</mat-card>

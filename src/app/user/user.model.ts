@@ -1,7 +1,11 @@
-import { Board } from "../board/board.model";
-import { Post } from "../post/post.model";
+import { Board } from '../board/board.model';
+import { Post } from '../post/post.model';
 
 export class User {
+  private _boards = new Array<Board>();
+  private _likedPosts = new Array<Post>();
+  private _createdPosts = new Array<Post>();
+
   constructor(
     private _id: number,
     private _userName: string,
@@ -15,10 +19,7 @@ export class User {
     private _github: string,
     private _noLikedPosts: number,
     private _noCreatedPosts: number,
-    private _noCreatedComments: number,
-    private _boards = new Array<Board>(),
-    private _likedPosts = new Array<Post>(),
-    private _createdPosts = new Array<Post>()
+    private _noCreatedComments: number
   ) {}
 
   static fromJSON(json: any): User {
@@ -35,11 +36,10 @@ export class User {
       json.github,
       json.noLikedPosts,
       json.noCreatedPosts,
-      json.noCreatedComments,
-      json.boards,
-      json.likedPosts,
-      json.createdPosts
+      json.noCreatedComments
     );
+    if (json.boards)
+        obj.boards = json.boards.map(Board.fromJSON);
 
     return obj;
   }
@@ -54,7 +54,7 @@ export class User {
     return this._displayName;
   }
   get avatar() {
-    return { "background-image": `url(${this._avatar})` };
+    return { 'background-image': `url(${this._avatar})` };
   }
   get email(): string {
     return this._email;
@@ -85,6 +85,9 @@ export class User {
   }
   get boards(): Board[] {
     return this._boards;
+  }
+  set boards(val: Board[]) {
+      this._boards = val;
   }
   get likedPosts(): Post[] {
     return this._likedPosts;

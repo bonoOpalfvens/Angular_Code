@@ -1,0 +1,50 @@
+<mat-accordion *ngIf="user; else notLoggedIn" multi="true">
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h1>Liked Boards</h1>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>
+      Here's an overview of all the boards you like!
+    </p>
+    <div layout="row">
+      <app-board-card
+        *ngFor="let board of user.boards"
+        [board]="board"
+      ></app-board-card>
+    </div>
+  </mat-expansion-panel>
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h1>All Boards</h1>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>
+      Here's an overview of all the boards we have to offer.<br />
+      Have fun!
+    </p>  
+    <div layout="row">
+      <app-board-card
+        *ngFor="let board of boards | async"
+        [board]="board"
+      ></app-board-card>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<ng-template #notLoggedIn>
+  <h1>Overview Boards</h1>
+  <p>
+    Here's an overview of all the boards we have to offer.<br />
+    Have fun!
+  </p>
+  <mat-divider></mat-divider>
+  <div layout="row">
+    <app-board-card
+      *ngFor="let board of boards | async"
+      [board]="board"
+    ></app-board-card>
+  </div>
+</ng-template>

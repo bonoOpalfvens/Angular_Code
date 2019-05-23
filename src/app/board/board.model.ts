@@ -9,12 +9,13 @@ export class Board {
         private _description: string,
         private _icon: string,
         private _likes: number,
+        private _noPosts: number,
         private _isLiking: boolean
-    ){}
+    ) {}
 
     static fromJSON(json: any): Board {
-        const obj = new Board(json.id, json.name, json.description, json.icon, json.likes, json.isLiking);
-        if(json.posts)
+        const obj = new Board(json.id, json.name, json.description, json.icon, json.likes, json.noPosts, json.isLiking);
+        if (json.posts)
             obj.posts = json.posts.map(Post.fromJSON);
 
         return obj;
@@ -31,16 +32,19 @@ export class Board {
     get icon() {
         return {'background-image': `url(${this._icon})`};
     }
-    get posts(): Array<Post>{
+    get posts(): Array<Post> {
         return this._posts;
-    }
-    get likes(): number{
-        return this._likes;
-    }
-    get isLiking(): boolean{
-        return this._isLiking;
     }
     set posts(val: Array<Post>) {
         this._posts = val;
+    }
+    get likes(): number {
+        return this._likes;
+    }
+    get noPosts(): number {
+        return this._noPosts;
+    }
+    get isLiking(): boolean {
+        return this._isLiking;
     }
 }
