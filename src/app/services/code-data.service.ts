@@ -21,9 +21,17 @@ export class CodeDataService {
       share()
     );
   }
+
   boards$(): Observable<Board[]> {
     return this.http.get(`${environment.apiUrl}/board/`).pipe(
       map((list: any[]): Board[] => list.map(Board.fromJSON)),
+      share()
+    );
+  }
+
+  board$(id: number): Observable<Board> {
+    return this.http.get(`${environment.apiUrl}/board/${id}`).pipe(
+      map(Board.fromJSON),
       share()
     );
   }

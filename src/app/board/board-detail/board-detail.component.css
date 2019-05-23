@@ -1,0 +1,37 @@
+mat-card:hover {
+    box-shadow: 2px 2px 2px 2px #555;
+}
+
+.buttonSubText {
+    font-size: 0.8em;
+}
+
+a{
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+mat-card-actions>button:hover, mat-card-actions>a:hover{
+    /*box-shadow: 2px 2px 2px 2px rgb(185, 185, 185);*/
+    box-shadow: 2px 2px 2px 2px rgb(155, 178, 218);
+}
+
+.visitButton {
+    width: 150px;
+}
+
+mat-card{
+    display: inline-block;
+    margin: 10px;
+    box-shadow: 2px 2px 2px 2px rgb(168, 168, 168);
+    border-radius: 5px;
+}
+
+.boardIcon{
+    background-size: cover;
+}
+
+.boardIcon:hover {
+    cursor: pointer;
+}

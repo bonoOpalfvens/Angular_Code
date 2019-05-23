@@ -10,12 +10,15 @@ import { AuthUserGuard } from './guards/auth-user.guard';
 import { PostGuard } from './guards/post.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { BoardOverviewComponent } from './board/board-overview/board-overview.component';
+import { BoardGuard } from './guards/board.guard';
+import { BoardDetailComponent } from './board/board-detail/board-detail.component';
 
 const appRoutes: Routes = [
   { path: 'Home', component: HomeComponent, resolve: { user: AuthUserGuard } },
   { path: 'NotFound', component: NotFoundComponent },
 
   { path: 'Boards', component: BoardOverviewComponent, resolve: { user: AuthUserGuard }  },
+  { path: 'Board/:id', component: BoardDetailComponent, resolve: { board: BoardGuard } },
 
   { path: 'Posts', component: PostExplorerComponent },
   { path: 'Post/:id', component: PostDetailComponent, resolve: { post: PostGuard } },

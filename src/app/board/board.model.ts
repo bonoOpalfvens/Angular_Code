@@ -18,6 +18,7 @@ export class Board {
         if (json.posts)
             obj.posts = json.posts.map(Post.fromJSON);
 
+            console.log(obj)
         return obj;
     }
     get id(): number {
