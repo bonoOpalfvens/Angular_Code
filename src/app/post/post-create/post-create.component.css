@@ -1,7 +1,7 @@
 .boardIcon{
     background-size: cover;
-    width: 140px;
-    height: 140px;
+    width: 100px;
+    height: 100px;
     margin-right: 15px;
 }
 
@@ -9,14 +9,40 @@ mat-card-actions{
     text-align: right;
 }
 
-mat-card{
-    margin: 10px;
-    background-color: #dfdfdf;
+.boardTitle{
+    margin: 0 auto;
+    max-width: 800px;
+    border: 10px solid #5262bc;
+    border-radius: 10px;
+    margin-top: 20px;
 }
 
 mat-card-title{
-    font-size: 5em !important;
+    font-size: 3em !important;
 }
 mat-card-subtitle{
-    font-size: 3em !important;
+    font-size: 2em !important;
+}
+.form {
+    min-width: 150px;
+    margin-right: 5%;
+    margin-left: 5%;
+    text-align: center;
+}
+  
+.fill-width {
+    margin-bottom: 10px;
+    width: 100%;
+}
+mat-divider{
+    color: #5262bc;
+    border: 1px solid #5262bc;
+}
+
+mat-input{
+    border: 1px solid #5262bc;
+}
+
+button{
+  margin: 10px;
 }

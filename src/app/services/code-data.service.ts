@@ -51,6 +51,14 @@ export class CodeDataService {
     );
   }
 
+  createPost$(title: string, content: string): any {
+    return this.http.post(
+      `${environment.apiUrl}/post`,
+      { title, content },
+      { responseType: 'text' }
+    );
+  }
+
   // User
   registerUser(email: string, userName: string, password: string): any {
     return this.http.post(

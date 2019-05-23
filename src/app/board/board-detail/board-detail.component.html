@@ -5,7 +5,7 @@
     <mat-card-subtitle>{{ board.description }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-actions>
-    <button mat-raised-button class="createPost" color="primary">
+    <button mat-raised-button class="createPost" color="primary" [routerLink]="['Create']">
       <mat-icon>library_add</mat-icon> Create a new post
     </button>
     <button mat-mini-fab class="favorite">

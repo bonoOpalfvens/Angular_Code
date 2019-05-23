@@ -92,7 +92,7 @@ export class RegisterComponent implements OnInit {
               );
             } else {
               this.snackBar.open(
-                `Could not register user: ${this.user.value.email}`,
+                `Could not register user (╯°□°)╯︵ ┻━┻`,
                 'Dismiss',
                 { duration: 8000 }
               );
