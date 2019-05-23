@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Post } from '../post.model';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-post-explorer',
@@ -7,7 +9,7 @@ import { Post } from '../post.model';
   styleUrls: ['./post-explorer.component.css']
 })
 export class PostExplorerComponent {
-  @Input() posts: Post[];
+  @Input() posts: Observable<Post[]>;
   private _sortingStrategy;
 
   public pageSizeOptions: number[] = [10, 15, 25, 50];
@@ -52,6 +54,8 @@ export class PostExplorerComponent {
         this._sortingStrategy = this.sortByComments;
         break;
     }
-    this.posts = this.posts.sort(this._sortingStrategy);
+    this.posts = this.posts.pipe(
+      map(items => items.sort(this._sortingStrategy))
+    );
   }
 }

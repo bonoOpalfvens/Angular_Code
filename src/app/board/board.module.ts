@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { BoardOverviewComponent } from './board-overview/board-overview.component';
 import { BoardCardComponent } from './board-card/board-card.component';
 import { BoardDetailComponent } from './board-detail/board-detail.component';
+import { PostModule } from '../post/post.module';
 
 const routes: Routes = [
   { path: 'Boards', component: BoardExplorerComponent }
@@ -16,7 +17,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     MaterialModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    PostModule
   ],
   exports: [BoardExplorerComponent]
 })

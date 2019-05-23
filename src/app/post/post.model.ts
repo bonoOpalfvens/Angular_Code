@@ -50,6 +50,9 @@ export class Post {
     get board(): Board {
         return this._board;
     }
+    set board(val: Board) {
+        this._board = val;
+    }
     get user(): User {
         return this._user;
     }
