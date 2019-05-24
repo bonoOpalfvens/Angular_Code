@@ -32,8 +32,9 @@ export class Post {
         if (json.board)
             obj._board = Board.fromJSON(json.board);
 
-        if (json.comments)
-            obj._comments = json.comments.map(Comment.fromJSON);
+        if (json.comments){
+            obj._comments = json.comments.map(c => Comment.fromJSON(c, obj.id));
+        }
         return obj;
     }
 
@@ -67,7 +68,13 @@ export class Post {
     get likes(): number {
         return this._likes;
     }
+    set likes(val: number) {
+        this._likes = val;
+    }
     get isLiking(): boolean {
         return this._isLiking;
+    }
+    set isLiking(val: boolean) {
+        this._isLiking = val;
     }
 }

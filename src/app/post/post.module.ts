@@ -7,9 +7,10 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
 import { PostCardComponent } from './post-card/post-card.component';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CommentCardComponent } from './comment-card/comment-card.component';
 
 @NgModule({
-  declarations: [PostExplorerComponent, PostDetailComponent, PostCardComponent, PostCreateComponent],
+  declarations: [PostExplorerComponent, PostDetailComponent, PostCardComponent, PostCreateComponent, CommentCardComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

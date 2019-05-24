@@ -40,20 +40,20 @@
       <mat-icon>comment</mat-icon
       ><span class="buttonSubText"> {{ post.noComments }} Comments</span>
     </button>
-    <a mat-button *ngIf="post.isLiking; else notLiking" color="primary">
+    <a mat-button *ngIf="isLiking | async; else notLiking" color="primary" (click)="like()">
       <mat-icon>thumb_up_alt</mat-icon
       ><span class="buttonSubText">
         You
-        <div *ngIf="post.likes > 1">and {{ post.likes - 1 }} other people</div>
+        <div *ngIf="(likes | async) > 1">and {{ post.likes - 1 }} other people</div>
         liked this!</span
       >
     </a>
     <ng-template #notLiking
-      ><a mat-button>
+      ><a mat-button (click)="like()">
         <mat-icon>thumb_up_alt</mat-icon
         ><span class="buttonSubText">
-          {{ post.likes }}
-          <span *ngIf="post.likes == 1; else multiplePeople">
+          {{ likes | async }}
+          <span *ngIf="(likes | async) == 1; else multiplePeople">
             person
           </span>
           <ng-template #multiplePeople>

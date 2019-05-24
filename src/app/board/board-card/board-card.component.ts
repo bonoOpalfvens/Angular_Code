@@ -37,14 +37,11 @@ export class BoardCardComponent implements OnInit {
     if (! this._authService.token) {
       this._snackBar
         .open(
-          `You need to be registered to perform actions like 'like', 'commment', and 'post' content.`,
-          'Register now!',
+          `You need to be registered to perform actions like 'like', 'commment', and 'post' content.`, '',
           {
             duration: 8000
           }
-        )
-        .afterDismissed()
-        .subscribe(() => this._router.navigate(['/User/Register']));
+        );
     } else {
       this._codeDataService.likeBoard(this.board.id).subscribe(
         val => {

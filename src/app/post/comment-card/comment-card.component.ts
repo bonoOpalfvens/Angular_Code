@@ -1,52 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Post } from '../post.model';
+import { Component, Input } from '@angular/core';
+import { Comment } from '../comment.model';
 import { CodeDataService } from 'src/app/services/code-data.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-post-detail',
-  templateUrl: './post-detail.component.html',
-  styleUrls: ['./post-detail.component.css']
+  selector: 'app-comment-card',
+  templateUrl: './comment-card.component.html',
+  styleUrls: ['./comment-card.component.css']
 })
-export class PostDetailComponent implements OnInit {
-  public post: Post;
-
-  pageSizeOptions: number[] = [10, 15, 25, 50];
-  pageIndex = 0;
-  pageSize = 15;
-  lowValue = 0;
-  highValue = 15;
+export class CommentCardComponent {
+  @Input() comment: Comment;
 
   constructor(
     private _codeDataService: CodeDataService,
     private _authService: AuthenticationService,
     private _snackBar: MatSnackBar,
-    private _router: Router,
-    private route: ActivatedRoute
+    private _router: Router
   ) {}
 
-  ngOnInit() {
-    this.route.data.subscribe(item =>
-      this.post = item.post
-    );
-  }
-
-  getPaginatorData(event) {
-    this.lowValue = event.pageIndex * event.pageSize;
-    this.highValue = this.lowValue + event.pageSize;
-    window.scrollTo(0, 0);
-  }
-
   get isLiking(): Observable<boolean> {
-    return of(this.post.isLiking);
+    return of(this.comment.isLiking);
   }
 
   get likes(): Observable<number> {
-    return of(this.post.likes);
+    return of(this.comment.likes);
   }
 
   like() {
@@ -59,22 +40,22 @@ export class PostDetailComponent implements OnInit {
           }
         );
     } else {
-      this._codeDataService.likePost(this.post.id).subscribe(
+      this._codeDataService.likeComment(this.comment.postId, this.comment.id).subscribe(
         val => {
           if (!val) {
             this._snackBar.open(
-              `Could not like post (╯°□°)╯︵ ┻━┻`,
+              `Could not like comment (╯°□°)╯︵ ┻━┻`,
               'Dismiss',
               { duration: 8000 }
             );
             } else {
-              this.post.isLiking = !this.post.isLiking;
-              this.post.likes += (this.post.isLiking) ? 1 : -1;
+              this.comment.isLiking = !this.comment.isLiking;
+              this.comment.likes += (this.comment.isLiking) ? 1 : -1;
             }
         },
         (err: HttpErrorResponse) => {
           this._snackBar.open(
-            `Error while trying to like post`,
+            `Error while trying to like comment`,
             'Dismiss',
             { duration: 15000 }
           );

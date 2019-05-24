@@ -9,7 +9,7 @@
       <mat-icon>library_add</mat-icon> Create a new post
     </button>
     <button
-    *ngIf="board.isLiking; else notLiking"
+    *ngIf="isLiking | async; else notLiking"
     mat-mini-fab
     class="favorite"
   >

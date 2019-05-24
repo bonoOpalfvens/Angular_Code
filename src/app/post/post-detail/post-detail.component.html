@@ -14,19 +14,20 @@
     {{post.content}}
   </mat-card-content>
   <mat-card-actions>
-    <a mat-button *ngIf="post.isLiking; else notLikingComment"><span class="buttonSubText">
+    <a mat-button *ngIf="isLiking | async; else notLiking" color="primary" (click)="like()">
+      <mat-icon>thumb_up_alt</mat-icon
+      ><span class="buttonSubText">
         You
-        <div *ngIf="post.likes > 1">
-          and {{ post.likes - 1 }} other people
-        </div>
-        liked this!</span>
+        <div *ngIf="(likes | async) > 1">and {{ post.likes - 1 }} other people</div>
+        liked this!</span
+      >
     </a>
-    <ng-template #notLikingComment>
-      <a mat-button>
-        <mat-icon>thumb_up_alt</mat-icon>
-        <span class="buttonSubText">
-          {{ post.likes }}
-          <span *ngIf="post.likes == 1; else multiplePeople">
+    <ng-template #notLiking
+      ><a mat-button (click)="like()">
+        <mat-icon>thumb_up_alt</mat-icon
+        ><span class="buttonSubText">
+          {{ likes | async }}
+          <span *ngIf="(likes | async) == 1; else multiplePeople">
             person
           </span>
           <ng-template #multiplePeople>
@@ -34,47 +35,12 @@
           </ng-template>
           liked this!
         </span>
-      </a>
-    </ng-template>
+      </a></ng-template
+    >
   </mat-card-actions>
   <mat-card-content>
     <div *ngFor="let comment of post.comments | slice: lowValue:highValue" class="commentItem">
-      <mat-card class="postCard">
-        <mat-card-header>
-          <div mat-card-avatar [routerLink]="['/User', comment.user.userName]" class="userAvatar"
-            [ngStyle]="comment.user.avatar"></div>
-          <mat-card-title>
-            <a [routerLink]="['/User', post.user.userName]"><b>user/{{ comment.user.displayName }}</b></a>
-          </mat-card-title>
-          <mat-card-subtitle>
-            Posted on {{ comment.dateAdded | date: "longDate" }}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          {{ comment.content }}
-        </mat-card-content>
-        <mat-card-actions>
-          <a mat-button *ngIf="comment.isLiking; else notLikingComment" color="primary">
-            <mat-icon>thumb_up_alt</mat-icon><span class="buttonSubText">
-              You
-              <div *ngIf="comment.likes > 1">
-                and {{ comment.likes - 1 }} other people
-              </div>
-              liked this!</span>
-          </a>
-          <ng-template #notLikingComment><a mat-button>
-              <mat-icon>thumb_up_alt</mat-icon><span class="buttonSubText">
-                {{ comment.likes }}
-                <span *ngIf="comment.likes == 1; else multiplePeople">
-                  person
-                </span>
-                <ng-template #multiplePeople>
-                  people
-                </ng-template>
-                liked this!
-              </span>
-            </a></ng-template>
-        </mat-card-actions>
-      </mat-card>
+      <app-comment-card [comment]="comment"></app-comment-card>
     </div>
     <mat-paginator length="{{ post.noComments }}" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
       [showFirstLastButtons]="true" (page)="pageEvent = getPaginatorData($event)">
