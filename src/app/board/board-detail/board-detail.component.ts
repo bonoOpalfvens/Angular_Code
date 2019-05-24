@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Board } from '../board.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { of, Observable } from 'rxjs';
 import { Post } from 'src/app/post/post.model';
 import { CodeDataService } from 'src/app/services/code-data.service';

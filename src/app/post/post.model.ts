@@ -32,7 +32,7 @@ export class Post {
         if (json.board)
             obj._board = Board.fromJSON(json.board);
 
-        if (json.comments){
+        if (json.comments) {
             obj._comments = json.comments.map(c => Comment.fromJSON(c, obj.id));
         }
         return obj;

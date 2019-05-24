@@ -3,8 +3,7 @@ import { Board } from '../board.model';
 import { CodeDataService } from 'src/app/services/code-data.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { MatSnackBar } from '@angular/material';
-import { Router } from '@angular/router';
-import { Subject, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -18,12 +17,10 @@ export class BoardCardComponent implements OnInit {
   constructor(
     private _codeDataService: CodeDataService,
     private _authService: AuthenticationService,
-    private _snackBar: MatSnackBar,
-    private _router: Router
+    private _snackBar: MatSnackBar
   ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   get isLiking(): Observable<boolean> {
     return of(this.board.isLiking);
@@ -34,14 +31,14 @@ export class BoardCardComponent implements OnInit {
   }
 
   like() {
-    if (! this._authService.token) {
-      this._snackBar
-        .open(
-          `You need to be registered to perform actions like 'like', 'commment', and 'post' content.`, '',
-          {
-            duration: 8000
-          }
-        );
+    if (!this._authService.token) {
+      this._snackBar.open(
+        `You need to be registered to perform actions like 'like', 'commment', and 'post' content.`,
+        '',
+        {
+          duration: 8000
+        }
+      );
     } else {
       this._codeDataService.likeBoard(this.board.id).subscribe(
         val => {
@@ -51,10 +48,10 @@ export class BoardCardComponent implements OnInit {
               'Dismiss',
               { duration: 8000 }
             );
-            } else {
-              this.board.isLiking = !this.board.isLiking;
-              this.board.likes += (this.board.isLiking) ? 1 : -1;
-            }
+          } else {
+            this.board.isLiking = !this.board.isLiking;
+            this.board.likes += this.board.isLiking ? 1 : -1;
+          }
         },
         (err: HttpErrorResponse) => {
           this._snackBar.open(

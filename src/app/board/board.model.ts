@@ -23,10 +23,10 @@ export class Board {
     get id(): number {
         return this._id;
     }
-    get name(): string{
+    get name(): string {
         return this._name;
     }
-    get description(): string{
+    get description(): string {
         return this._description;
     }
     get icon() {

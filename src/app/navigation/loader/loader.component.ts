@@ -9,5 +9,5 @@ import { LoaderService } from 'src/app/services/loader.service';
 })
 export class LoaderComponent {
   isLoading: Subject<boolean> = this.loaderService.isLoading;
-  constructor(private loaderService: LoaderService){}
+  constructor(private loaderService: LoaderService) {}
 }
