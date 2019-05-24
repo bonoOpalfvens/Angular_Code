@@ -12,6 +12,7 @@ import { PostModule } from './post/post.module';
 import { NavigationModule } from './navigation/navigation.module';
 import { HomeModule } from './home/home.module';
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
+import { LegalModule } from './legal/legal.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AuthenticationInterceptor } from './interceptors/authentication.interce
     PostModule,
     UserModule,
     HomeModule,
+    LegalModule,
 
     AppRoutingModule
   ],

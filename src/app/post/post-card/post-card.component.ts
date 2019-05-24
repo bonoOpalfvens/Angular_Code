@@ -55,7 +55,7 @@ export class PostCardComponent {
         },
         (err: HttpErrorResponse) => {
           this._snackBar.open(
-            `Error while trying to like post`,
+            `Error while trying to like post (╯°□°)╯︵ ┻━┻`,
             'Dismiss',
             { duration: 15000 }
           );

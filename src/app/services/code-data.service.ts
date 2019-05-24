@@ -90,8 +90,8 @@ export class CodeDataService {
 
   createComment(postId: number, content: string): any {
     return this.http.post(
-      `${environment.apiUrl}/post/${postId}/comment`,
-      { content },
+      `${environment.apiUrl}/post/comment`,
+      { postId, content },
       { responseType: 'text' }
     );
   }

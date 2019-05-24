@@ -14,6 +14,10 @@
     {{post.content}}
   </mat-card-content>
   <mat-card-actions>
+    <ng-template #disabled>
+      <button mat-raised-button (click)="toLogin()"><mat-icon>add_comment</mat-icon> Comment</button>
+    </ng-template>
+    <button mat-raised-button color="primary" *ngIf="loggedIn else disabled" (click)="loadComment()"><mat-icon>add_comment</mat-icon> Comment</button>
     <a mat-button *ngIf="isLiking | async; else notLiking" color="primary" (click)="like()">
       <mat-icon>thumb_up_alt</mat-icon
       ><span class="buttonSubText">
@@ -39,6 +43,8 @@
     >
   </mat-card-actions>
   <mat-card-content>
+    <app-comment-form *ngIf="(clicked | async)" [post]="post"></app-comment-form>
+
     <div *ngFor="let comment of post.comments | slice: lowValue:highValue" class="commentItem">
       <app-comment-card [comment]="comment"></app-comment-card>
     </div>

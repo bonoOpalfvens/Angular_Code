@@ -58,7 +58,7 @@ export class BoardCardComponent implements OnInit {
         },
         (err: HttpErrorResponse) => {
           this._snackBar.open(
-            `Error while trying to like board`,
+            `Error while trying to like board (╯°□°)╯︵ ┻━┻`,
             'Dismiss',
             { duration: 15000 }
           );

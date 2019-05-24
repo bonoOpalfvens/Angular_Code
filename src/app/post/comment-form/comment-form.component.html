@@ -1,0 +1,25 @@
+<form [formGroup]="comment" (ngSubmit)="onSubmit()">
+  <mat-card class="postCard">
+    <mat-card-header>
+      <div
+        mat-card-avatar
+      ><mat-icon>add_comment</mat-icon></div>
+      <mat-card-title>
+        Add a new comment
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field class="fill-width" appearance="outline">
+        <mat-label>Content</mat-label>
+        <textarea matInput rows="5"
+          formControlName="content"> </textarea>
+        <mat-error
+          *ngIf="comment.get('content').errors && comment.get('content').touched"
+        >
+          {{ getErrorMessage(comment.get("content").errors) }}
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary">Send</button>
+    </mat-card-content>
+  </mat-card>
+</form>

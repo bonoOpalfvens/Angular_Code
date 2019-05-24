@@ -1,59 +1,52 @@
-import { Component, OnInit } from '@angular/core';
-import { Board } from 'src/app/board/board.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
+import { Post } from '../post.model';
+import { User } from 'src/app/user/user.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CodeDataService } from 'src/app/services/code-data.service';
+import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-post-create',
-  templateUrl: './post-create.component.html',
-  styleUrls: ['./post-create.component.css']
+  selector: 'app-comment-form',
+  templateUrl: './comment-form.component.html',
+  styleUrls: ['./comment-form.component.css']
 })
-export class PostCreateComponent implements OnInit {
-  public board: Board;
-  public post: FormGroup;
+export class CommentFormComponent implements OnInit {
+  @Input() post: Post;
+  public comment: FormGroup;
 
   constructor(
-    private _route: ActivatedRoute,
     private _fb: FormBuilder,
     private _codeDataService: CodeDataService,
     private _router: Router,
     private _snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this._route.data.subscribe(item => (this.board = item.board));
-
-    this.post = this._fb.group({
-      title: [
-        '',
-        [Validators.required, Validators.minLength(3), Validators.maxLength(50)]
-      ],
+    this.comment = this._fb.group({
       content: [
         '',
         [Validators.required,
-        Validators.minLength(30),
-        Validators.maxLength(10000)]
+        Validators.minLength(2),
+        Validators.maxLength(250)]
       ]
     });
   }
-
   onSubmit() {
-    if (this.post.valid) {
-      this._codeDataService.createPost(this.board.id, this.post.value.title, this.post.value.content)
+    if (this.comment.valid) {
+      this._codeDataService.createComment(this.post.id, this.comment.value.content)
       .subscribe(val => {
         if (val) {
-          this._router.navigate([`/Post/${val}`]);
+          this._router.navigate([`/Post/${this.post.id}`]);
           this._snackBar.open(
-            `Succesfully created post!`,
+            `Succesfully created comment!`,
             'Dismiss',
             { duration: 8000 }
           );
         } else {
           this._snackBar.open(
-            `Could not create post (╯°□°)╯︵ ┻━┻`,
+            `Could not create comment (╯°□°)╯︵ ┻━┻`,
             'Dismiss',
             { duration: 8000 }
           );
@@ -61,7 +54,7 @@ export class PostCreateComponent implements OnInit {
       },
       (err: HttpErrorResponse) => {
         this._snackBar.open(
-          `Error while trying to create post (╯°□°)╯︵ ┻━┻`,
+          `Error while trying to create comment (╯°□°)╯︵ ┻━┻`,
           'Dismiss',
           { duration: 15000 }
         );
@@ -82,4 +75,5 @@ export class PostCreateComponent implements OnInit {
         errors.maxlength.requiredLength
       } characters (got ${errors.maxlength.actualLength})`;
   }
+
 }

@@ -55,7 +55,7 @@ export class CommentCardComponent {
         },
         (err: HttpErrorResponse) => {
           this._snackBar.open(
-            `Error while trying to like comment`,
+            `Error while trying to like comment (╯°□°)╯︵ ┻━┻`,
             'Dismiss',
             { duration: 15000 }
           );
