@@ -33,9 +33,9 @@ export class PostCreateComponent implements OnInit {
       ],
       content: [
         '',
-        [Validators.required],
+        [Validators.required,
         Validators.minLength(30),
-        Validators.maxLength(10000)
+        Validators.maxLength(10000)]
       ]
     });
   }
