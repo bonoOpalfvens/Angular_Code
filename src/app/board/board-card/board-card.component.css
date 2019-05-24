@@ -1,36 +1,27 @@
-mat-card:hover {
+.boardCard {
+    box-shadow: 2px 2px 2px 2px rgb(212, 212, 212);
+    width: 245px;
+    display: inline-block;
+    margin: 5px;
+}
+
+.boardCard:hover {
     box-shadow: 2px 2px 2px 2px #555;
 }
 
-.buttonSubText {
-    font-size: 0.8em;
+.boardIcon {
+  background-size: cover;
 }
 
-a{
-    color: #333;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-mat-card-actions>button:hover, mat-card-actions>a:hover{
-    /*box-shadow: 2px 2px 2px 2px rgb(185, 185, 185);*/
-    box-shadow: 2px 2px 2px 2px rgb(155, 178, 218);
+.favorite {
+    float: right;
 }
 
 .visitButton {
-    width: 150px;
+    width: 60%;
 }
 
-mat-card{
-    display: inline-block;
-    margin: 10px;
-    box-shadow: 2px 2px 2px 2px rgb(168, 168, 168);
-    border-radius: 5px;
-}
-
-.boardIcon{
-    background-size: cover;
-}
-.boardIcon:hover {
-    cursor: pointer;
+.notLiking{
+    color: rgb(139, 139, 139);
+    background-color: #ffffff;
 }

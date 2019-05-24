@@ -29,25 +29,6 @@ div::-webkit-scrollbar-thumb:hover {
     background: #3f51b5ef; 
 }
 
-.boardCard {
-    box-shadow: 2px 2px 2px 2px rgb(212, 212, 212);
-    width: 245px;
+app-board-card{
     display: inline-block;
-    margin: 5px;
-}
-
-.boardCard:hover {
-    box-shadow: 2px 2px 2px 2px #555;
-}
-
-.boardIcon {
-  background-size: cover;
-}
-
-.favorite {
-    float: right;
-}
-
-.visitButton {
-    width: 60%;
 }

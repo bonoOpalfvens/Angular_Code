@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/user/user.model';
 import { ActivatedRoute } from '@angular/router';
+import { CodeDataService } from 'src/app/services/code-data.service';
 import { Observable } from 'rxjs';
 import { Board } from '../board.model';
-import { CodeDataService } from 'src/app/services/code-data.service';
 
 @Component({
   selector: 'app-board-overview',
@@ -12,7 +12,7 @@ import { CodeDataService } from 'src/app/services/code-data.service';
 })
 export class BoardOverviewComponent implements OnInit {
   public user: User;
-  private _fetchBoards$: Observable<Board[]> = this._codeDataService.boards$();
+  public _boards: Observable<Board[]>;
 
   constructor(
     private _codeDataService: CodeDataService,
@@ -23,9 +23,14 @@ export class BoardOverviewComponent implements OnInit {
     this.route.data.subscribe(item =>
       this.user = item.user
     );
+    if (this.user) {
+      this._boards = this._codeDataService.notLikedBoards$();
+    } else {
+      this._boards = this._codeDataService.boards$();
+    }
   }
 
   get boards() {
-    return this._fetchBoards$;
+    return this._boards;
   }
 }

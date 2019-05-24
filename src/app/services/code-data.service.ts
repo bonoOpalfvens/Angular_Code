@@ -36,6 +36,13 @@ export class CodeDataService {
     );
   }
 
+  notLikedBoards$(): Observable<Board[]> {
+    return this.http.get(`${environment.apiUrl}/board/notLiked`).pipe(
+      map((list: any[]): Board[] => list.map(Board.fromJSON)),
+      share()
+    );
+  }
+
   likeBoard(id: number): any {
     return this.http.post(
       `${environment.apiUrl}/board/${id}/like`,

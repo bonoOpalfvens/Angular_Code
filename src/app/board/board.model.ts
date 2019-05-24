@@ -41,10 +41,16 @@ export class Board {
     get likes(): number {
         return this._likes;
     }
+    set likes(val: number) {
+        this._likes = val;
+    }
     get noPosts(): number {
         return this._noPosts;
     }
     get isLiking(): boolean {
         return this._isLiking;
+    }
+    set isLiking(val: boolean) {
+        this._isLiking = val;
     }
 }

@@ -34,7 +34,6 @@ export class Post {
 
         if (json.comments)
             obj._comments = json.comments.map(Comment.fromJSON);
-
         return obj;
     }
 

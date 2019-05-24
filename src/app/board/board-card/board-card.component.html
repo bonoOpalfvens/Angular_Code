@@ -2,7 +2,7 @@
   <mat-card-header>
     <div mat-card-avatar class="boardIcon" [ngStyle]="board.icon"></div>
     <mat-card-title>{{ board.name }}</mat-card-title>
-    <mat-card-subtitle>{{ board.description }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ board.description }}<br><b>{{ likes | async }} {{ (likes | async) === 1 ? "Like" : "Likes"}} &middot; {{ board.noPosts }} {{ board.noPosts === 1 ? "Post" : "Posts"}}</b> </mat-card-subtitle>
   </mat-card-header>
   <mat-card-actions>
     <button
@@ -11,32 +11,22 @@
       class="visitButton"
       [routerLink]="['/Board', board.id]"
     >
-      View {{ board.noPosts }} posts
+      Visit
     </button>
-    <a mat-button *ngIf="board.isLiking; else notLiking" color="primary">
-      <mat-icon>thumb_up_alt</mat-icon
-      ><span class="buttonSubText">
-        You
-        <div *ngIf="board.likes > 1">
-          and {{ board.likes - 1 }} other people
-        </div>
-        liked this!</span
-      >
-    </a>
-    <ng-template #notLiking
-      ><a mat-button>
-        <mat-icon>thumb_up_alt</mat-icon
-        ><span class="buttonSubText">
-          {{ board.likes }}
-          <span *ngIf="board.likes == 1; else multiplePeople">
-            person
-          </span>
-          <ng-template #multiplePeople>
-            people
-          </ng-template>
-          liked this!
-        </span>
-      </a></ng-template
+
+    <button
+      *ngIf="isLiking | async; else notLiking"
+      mat-mini-fab
+      class="favorite"
+      (click)="like()"
     >
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <ng-template #notLiking>
+      <button mat-mini-fab class="favorite notLiking"
+      (click)="like()">
+        <mat-icon>favorite</mat-icon>
+      </button>
+    </ng-template>
   </mat-card-actions>
 </mat-card>

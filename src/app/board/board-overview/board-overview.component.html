@@ -21,10 +21,16 @@
         <h1>All Boards</h1>
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <p>
-      Here's an overview of all the boards we have to offer.<br />
+    <p *ngIf="user; else intro">
+      Here's an overview of all the boards you haven't liked yet.<br />
       Have fun!
-    </p>  
+    </p>
+    <ng-template #intro>
+      <p>
+        Here's an overview of all the boards we have to offer.<br />
+        Have fun!
+      </p>
+    </ng-template>
     <div layout="row">
       <app-board-card
         *ngFor="let board of boards | async"

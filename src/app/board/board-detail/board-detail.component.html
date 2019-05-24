@@ -8,9 +8,18 @@
     <button mat-raised-button class="createPost" color="primary" [routerLink]="['Create']">
       <mat-icon>library_add</mat-icon> Create a new post
     </button>
-    <button mat-mini-fab class="favorite">
+    <button
+    *ngIf="board.isLiking; else notLiking"
+    mat-mini-fab
+    class="favorite"
+  >
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <ng-template #notLiking>
+    <button mat-mini-fab class="favorite notLiking">
       <mat-icon>favorite</mat-icon>
     </button>
+  </ng-template>
   </mat-card-actions>
 </mat-card>
 <h1>Posts </h1>

@@ -23,7 +23,6 @@ export class AuthenticationInterceptor implements HttpInterceptor {
           `Bearer ${this.authService.token.substr(1, this.authService.token.length - 2)}`
         )
       });
-      console.log(clonedRequest)
       return next.handle(clonedRequest);
     }
     return next.handle(req);

@@ -38,8 +38,13 @@ export class User {
       json.noCreatedPosts,
       json.noCreatedComments
     );
-    if (json.boards)
-        obj.boards = json.boards.map(Board.fromJSON);
+    if (json.boards) {
+      obj.boards = json.boards.map(b => {
+        const board = Board.fromJSON(b);
+        board.isLiking = true;
+        return board;
+      });
+    }
 
     return obj;
   }

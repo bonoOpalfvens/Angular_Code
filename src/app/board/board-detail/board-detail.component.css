@@ -30,3 +30,7 @@ mat-card-title{
 mat-card-subtitle{
     font-size: 3em !important;
 }
+.notLiking{
+    color: rgb(139, 139, 139);
+    background-color: #ffffff;
+}
